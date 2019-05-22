@@ -1,0 +1,33 @@
+---
+- name: define tarball location
+  set_fact:
+    golang_tarball_dest: "{{ golang_tarball_path }}/{{ golang_tarball_url | basename }}"
+
+- name: download tarball
+  get_url:
+    url: "{{ golang_tarball_url }}"
+    dest: "{{ golang_tarball_dest }}"
+    checksum: "{{ golang_tarball_checksum }}"
+  notify: extract tarball
+  become: yes
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: create installation path
+  file:
+    path: "{{ golang_path }}"
+    state: directory
+  become: yes
+
+- name: configure path
+  template:
+    dest: /etc/profile.d/go_path.sh
+    src: go_path.sh
+    mode: 0755
+  become: yes
+
+- name: "install go package"
+  shell: "{{ golang_path }}/go/bin/go get -u -v {{ item }}"
+  loop: "{{ golang_packages }}"
+

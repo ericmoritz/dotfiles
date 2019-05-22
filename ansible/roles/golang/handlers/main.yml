@@ -1,0 +1,7 @@
+---
+- name: extract tarball
+  unarchive:
+    src: "{{ golang_tarball_dest }}"
+    dest: "{{ golang_path }}"
+    remote_src: yes
+  become: yes

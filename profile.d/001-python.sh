@@ -1,5 +1,7 @@
 # -*- sh-shell: bash -*-
-PATH=$PATH:/Users/eric/Library/Python/3.7/bin
+if [ "$OS" == "macos" ]; then
+    PATH=$PATH:/Users/eric/Library/Python/3.7/bin
+fi
 
 export WORKON_HOME=~/.envs
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)

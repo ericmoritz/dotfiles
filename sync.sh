@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
+source "$HOME/dotfiles/shared.sh"
 symlink() {
   src="$1"
   dest="$2"
@@ -13,3 +13,8 @@ symlink() {
   fi
 }
 symlink "$HOME/dotfiles/spacemacs.d" "$HOME/.spacemacs.d"
+sudo pip3 install virtualenvwrapper
+if which pacman; then
+    sudo pacman -S ansible
+fi
+ansible-galaxy install nephelaiio.golang

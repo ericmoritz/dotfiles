@@ -1,0 +1,8 @@
+all:
+  children:
+    personal:
+      hosts:
+        localhost
+      vars:
+        git_user_name: "Eric Moritz"
+        git_user_email: "eric.moritz@gmail.com"
