@@ -61,7 +61,7 @@ This function should only modify configuration layer settings."
      semantic
      go
      unicode-fonts
-     proto
+     copy-as-format
      )
 
    ;; List of additional packages that will be installed without being
@@ -464,6 +464,11 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (require 'alert)
+  (spacemacs/toggle-relative-line-numbers-on)
+  (spacemacs/toggle-mode-line-org-clock-on)
+  (spacemacs/toggle-display-time-on)
+  (spacemacs/toggle-centered-point-on)
+  (spacemacs/toggle-whitespace-cleanup-on)
   (add-hook 'pomodoro-message-hook (lambda (msg)
                                      (alert msg :title "org-pomodoro")
                                      (call-process "spotify" nil nil nisg "stop")
