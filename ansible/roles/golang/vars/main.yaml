@@ -18,3 +18,8 @@ golang_packages:
   - github.com/davidrjenni/reftools/cmd/fillstruct
   - github.com/josharian/impl
   - github.com/golangci/golangci-lint/cmd/golangci-lint
+  - github.com/godoctor/godoctor
+  - github.com/fatih/gomodifytags
+golang_install:
+  - github.com/godoctor/godoctor
+

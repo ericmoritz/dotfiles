@@ -27,7 +27,10 @@
     mode: 0755
   become: yes
 
-- name: "install go package"
+- name: "go get package"
   shell: "{{ golang_path }}/go/bin/go get -u -v {{ item }}"
   loop: "{{ golang_packages }}"
 
+- name: "go install package"
+  shell: "{{ golang_path }}/go/bin/go install {{ item }}"
+  loop: "{{ golang_install }}"
