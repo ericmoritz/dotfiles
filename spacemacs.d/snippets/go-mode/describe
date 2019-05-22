@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#key : describe 
+#name : Goblin describe block
+#contributor : @ericmoritz
+#group : goblin
+# --
+g.Describe("$1", func() {
+                 $0
+})
