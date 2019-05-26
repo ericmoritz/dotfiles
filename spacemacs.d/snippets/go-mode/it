@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#key : it 
+#name : Goblin it block
+#contributor : @ericmoritz
+#group : goblin
+# --
+g.It("Should $1", func() {
+             panic("undefined")$0
+})

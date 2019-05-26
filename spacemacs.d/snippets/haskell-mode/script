@@ -1,0 +1,11 @@
+#key : script
+#name : A Stack script 
+#contributor : Eric Moritz
+# --
+#!/usr/bin/env stack
+{- stack
+   --resolver lts-13.19
+   script
+-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NoImplicitPrelude #-}
