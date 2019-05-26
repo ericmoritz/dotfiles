@@ -1,6 +1,9 @@
 ---
-- name: install NotoSansMono Nerd Font
+- name: install fonts
   pacman:
-    name: nerd-fonts-noto-sans-mono 
+    name: "{{ item }}"
     state: present
   become: true
+  loop:
+    - nerd-fonts-noto-sans-mono 
+    - noto-fonts-emoji
