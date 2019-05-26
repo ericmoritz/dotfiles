@@ -1,0 +1,6 @@
+---
+- name: install NotoSansMono Nerd Font
+  pacman:
+    name: nerd-fonts-noto-sans-mono 
+    state: present
+  become: true

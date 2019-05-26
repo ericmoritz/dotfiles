@@ -1,0 +1,50 @@
+---
+- name: Install k8s packages
+  become: true
+  pacman:
+    name:
+      - minikube
+      - docker-machine
+      - kubectl
+      - libvirt
+      - qemu-headless
+      - ebtables
+      - dnsmasq
+
+- name: start services
+  become: true
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - libvirtd
+    - virtlogd
+
+- name: install kvm2 driver
+  become: true
+  become_user: aur_builder
+  aur:
+    skip_installed: true
+    name: docker-machine-driver-kvm2
+
+- name: add users to libvirt group
+  become: true
+  user:
+    name: eric
+    append: true
+    groups: libvirt
+
+- command: "minikube status"
+  register: minikube_status
+  ignore_errors: true
+
+- name: start minikube
+  shell: "minikube start --vm-driver kvm2"
+  when: minikube_status is failed
+
+- name: add the docker env to the user's profile
+  lineinfile:
+    line: eval $(minikube docker-env)
+    regex: minikube docker-env
+    path: ~/.profile

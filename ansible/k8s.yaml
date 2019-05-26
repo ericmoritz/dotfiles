@@ -1,0 +1,4 @@
+---
+- hosts: personal
+  roles:
+    - k8s

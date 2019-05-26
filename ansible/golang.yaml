@@ -1,0 +1,43 @@
+- hosts: personal
+  roles:
+    - fubarhouse.golang
+  vars:
+    go_version: 1.12.5
+    GOROOT: /opt/go
+    go_install:
+      - name: godoctor
+        repo: https://github.com/godoctor/godoctor
+        dest: github.com/godoctor/godoctor
+        package: github.com/godoctor/godoctor
+        version: master
+    go_get:
+      - name: gocode
+        url: github.com/mdempsky/gocode
+      - name: godef
+        url: github.com/rogpeppe/godef
+      - name: guru
+        url: golang.org/x/tools/cmd/guru
+      - name: gorename
+        url: golang.org/x/tools/cmd/gorename
+      - name: goimports
+        url: golang.org/x/tools/cmd/goimports
+      - name: godoc
+        url: golang.org/x/tools/cmd/godoc
+      - name: gogetdoc
+        url: github.com/zmb3/gogetdoc
+      - name: gotests
+        url: github.com/cweill/gotests
+      - name: gopkgs
+        url: github.com/haya14busa/gopkgs/cmd/gopkgs
+      - name: fillstruct
+        url: github.com/davidrjenni/reftools/cmd/fillstruct
+      - name: impl
+        url: github.com/josharian/impl
+      - name: golangci-lint
+        url: github.com/golangci/golangci-lint/cmd/golangci-lint
+      - name: godoctor
+        url: github.com/godoctor/godoctor
+      - name: gomodifytags
+        url: github.com/fatih/gomodifytags
+      - name: dlv
+        url: github.com/go-delve/delve/cmd/dlv

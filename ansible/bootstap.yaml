@@ -1,0 +1,18 @@
+---
+- hosts: personal
+  tasks:
+    - command: "ansible-galaxy install fubarhouse.golang"
+    - user: name=aur_builder
+      become: true
+      
+    - lineinfile:
+        path: /etc/sudoers.d/aur_builder-allow-to-sudo-pacman
+        state: present
+        line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+        validate: /usr/sbin/visudo -cf %s
+        create: yes
+      become: true
+    - name: install
+      git:
+        repo: https://github.com/kewlfft/ansible-aur.git
+        dest: ~/.ansible/plugins/modules/aur

@@ -1,0 +1,25 @@
+---
+- name: Clone spacemacs to ~/src/spacemacs
+  git:
+    repo: https://github.com/syl20bnr/spacemacs.git
+    dest: ~/src/spacemacs
+    version: develop
+- name: rm ~/.emacs
+  file:
+    path: ~/.emacs
+    state: absent
+- name: symlink ~/.emacs.d to ~/src/spacemacs
+  file:
+    path: ~/.emacs.d
+    state: link
+    src: ~/src/spacemacs
+- name: Symlink ~/.spacemacs.d to ~/dotfiles/spacemacs.d
+  file:
+    path: ~/.spacemacs.d
+    state: link
+    src: ~/dotfiles/spacemacs.d
+- name: create ~/org for org-mode
+  file:
+    path: ~/org
+    state: directory
+    mode: 0770

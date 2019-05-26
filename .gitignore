@@ -1,2 +1,3 @@
 .stversions
 .spacemacs.env
+*.retry
