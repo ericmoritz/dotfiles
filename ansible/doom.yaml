@@ -1,4 +1,4 @@
 ---
-- hosts: personal
+- hosts: all
   roles:
     - doom

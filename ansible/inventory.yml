@@ -1,12 +1,17 @@
 all:
-  hosts:
-    eric-pc
+  hosts: eric-pc Erics-Corsha-Laptop.local
   children:
-    personal:
-      hosts:
-        eric-pc
+    work:
+      hosts: Erics-Corsha-Laptop.local
       vars:
-        git_user_name: "Eric Moritz"
-        git_user_email: "eric.moritz@gmail.com"
+        git_user_name: Eric Moritz
+        git_user_email: eric@corsha.com
+        GOOS: darwin
+        GOARCH: amd64
+    personal:
+      hosts: eric-pc
+      vars:
+        git_user_name: Eric Moritz
+        git_user_email: eric.moritz@gmail.com
         GOOS: linux
         GOARCH: amd64
