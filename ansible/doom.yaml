@@ -1,0 +1,4 @@
+---
+- hosts: personal
+  roles:
+    - doom

@@ -41,3 +41,15 @@
         url: github.com/fatih/gomodifytags
       - name: dlv
         url: github.com/go-delve/delve/cmd/dlv
+      - name: gore
+        url: github.com/motemen/gore/cmd/gore
+      - name: gocode
+        url: github.com/mdempsky/gocode
+      - name: godoc
+        url: golang.org/x/tools/cmd/godoc
+      - name: goimports
+        url: golang.org/x/tools/cmd/goimports
+      - name: gorename
+        url: golang.org/x/tools/cmd/gorename
+      - name: guru
+        url: golang.org/x/tools/cmd/guru

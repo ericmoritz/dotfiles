@@ -8,3 +8,5 @@ all:
       vars:
         git_user_name: "Eric Moritz"
         git_user_email: "eric.moritz@gmail.com"
+        GOOS: linux
+        GOARCH: amd64

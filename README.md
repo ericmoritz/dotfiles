@@ -1,7 +1,4 @@
 # dotfiles
 
-My dotfiles
+My dotfiles and ansible cookbooks
 
-## Usage
-
-Just source `env.sh` in your bashrc
