@@ -3,9 +3,8 @@
   become: true
   pacman:
     name:
-      - minikube
+      - docker
       - docker-machine
-      - kubectl
       - libvirt
       - qemu-headless
       - ebtables
@@ -26,7 +25,11 @@
   become_user: aur_builder
   aur:
     skip_installed: true
-    name: docker-machine-driver-kvm2
+    name: "{{ item }}"
+  loop:
+    - docker-machine-driver-kvm2
+    - minikube-bin
+    - kubectl-bin
 
 - name: add users to libvirt group
   become: true
@@ -42,9 +45,3 @@
 - name: start minikube
   shell: "minikube start --vm-driver kvm2"
   when: minikube_status is failed
-
-- name: add the docker env to the user's profile
-  lineinfile:
-    line: eval $(minikube docker-env)
-    regex: minikube docker-env
-    path: ~/.profile
