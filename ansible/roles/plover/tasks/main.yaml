@@ -1,0 +1,5 @@
+---
+- name: install plover from AUR
+  when: ansible_facts['os_family'] == 'Archlinux'
+  aur:
+    name: plover

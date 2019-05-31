@@ -7,3 +7,7 @@
   loop:
     - nerd-fonts-noto-sans-mono 
     - noto-fonts-emoji
+    - otf-fira-code
+    - ttf-fira-code
+    - otf-fira-mono
+    - ttf-fira-mono

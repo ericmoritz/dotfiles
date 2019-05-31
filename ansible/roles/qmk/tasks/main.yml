@@ -1,0 +1,43 @@
+---
+- name: Clone my QMK Fork
+  git:
+    repo: git@github.com:ericmoritz/qmk_firmware.git
+    dest: ~/src/qmk_firmware
+
+- name: Install QMK deps
+  when: ansible_facts['system'] == 'Linux'
+  become: true
+  pacman:
+    name: "{{ item }}"
+  loop:
+    - avr-gcc
+    - arm-none-eabi-binutils
+    - arm-none-eabi-gcc
+    - arm-none-eabi-newlib
+    - avr-binutils
+    - avr-libc
+    - avr-gcc
+    - base-devel
+    - dfu-util
+    - diffutils
+    - gcc
+    - git
+    - unzip
+    - wget
+    - zip
+    - dfu-programmer
+    - avrdude
+
+- name: Remove the modemmanaher package because it conflicts
+  become: true
+  pacman:
+    name: modemmanager
+    state: absent
+
+- name: Add user to uucp group
+  when: ansible_facts['system'] == 'Linux'
+  become: true
+  user:
+    name: eric
+    groups: uucp
+    append: true
