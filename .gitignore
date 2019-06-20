@@ -1,3 +1,4 @@
 .stversions
 .spacemacs.env
 *.retry
+/.etc/
