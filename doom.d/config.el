@@ -27,6 +27,7 @@
                 :arrow "→"
                 :double-arrow "⇒"
                 :ellipsis "…"
+                :colon-eq "≔"
                 )))
 
 (after! python
@@ -71,3 +72,44 @@
     :ellipsis "..."
     )
   )
+
+(after! javascript-mode
+  (set-pretty-symbols! 'javascript-mode :merge t
+    :double-arrow "=>"
+    :arrow "->"
+    :is "==="
+    :isnt "!=="
+    :equal      "=="
+    :not-equal "!="
+    :lte "<="
+    :gte ">="
+    :ellipsis "..."
+    )
+  )
+;; because I'm a monster
+(after! go-mode
+  (set-pretty-symbols! 'go-mode :merge t
+    :equal      "=="
+    :not-equal "!="
+    :lte "<="
+    :gte ">="
+    :not "!"
+    :and "&&" :or "||"
+
+    ;; Functional
+    :def "func"
+    :lambda "func()"
+
+    ;; Types
+    :null "nil"
+    :true "true" :false "false"
+    :int "int64" :str "string"
+    :float "float64"
+    :bool "bool"
+
+    ;; Flow
+
+    :for "for"
+    :in ":= range"
+    :return "return"
+    :yield "<-"))
