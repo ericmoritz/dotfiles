@@ -2,7 +2,7 @@
 
 ;; Place your private configuration here
 (display-time-mode 1)
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-dracula)
 (setq doom-font (font-spec :family "Source Code Pro" :size 14))
 (set-formatter! 'yq "cat")
 (setq prettier-js-args '(
