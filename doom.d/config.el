@@ -14,3 +14,60 @@
  doom-modeline-persp-name t
  org-clock-clocked-in-display 'both
  )
+
+(setq +pretty-code-symbols
+      (append +pretty-code-symbols
+              '(:equal     "≡"
+                :not-equal "≠"
+                :is        "≣"
+                :isnt      "≢"
+                :lte       "≤"
+                :gte       "≥"
+                :subseteq  "⊆"
+                :arrow "→"
+                :double-arrow "⇒"
+                :ellipsis "…"
+                )))
+
+(after! python
+  (set-pretty-symbols! 'python-mode :merge t
+    :equal      "=="
+    :not-equal "!="
+    :lte "<="
+    :gte ">="
+    :is  "is"
+    :isnt "is not"
+    :subseteq "issubset"
+
+    ;; doom builtins
+
+    ;; Functional
+    :def "def"
+    :lambda "lambda"
+    ;; Types
+    :null "None"
+    :true "True" :false "False"
+    :int "int" :str "str"
+    :float "float"
+    :bool "bool"
+    :tuple "tuple"
+    ;; Flow
+    :not "not"
+    :in "in" :not-in "not in"
+    :and "and" :or "or"
+    :for "for"
+    :return "return" :yield "yield"))
+
+(after! typescript-mode
+  (set-pretty-symbols! 'typescript-mode :merge t
+    :double-arrow "=>"
+    :arrow "->"
+    :is "==="
+    :isnt "!=="
+    :equal      "=="
+    :not-equal "!="
+    :lte "<="
+    :gte ">="
+    :ellipsis "..."
+    )
+  )
