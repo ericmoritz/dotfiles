@@ -15,6 +15,9 @@
  org-clock-clocked-in-display 'both
  )
 
+(add-hook! 'org-mode-hook
+  (setq org-agenda-span 14))
+
 (setq +pretty-code-symbols
       (append +pretty-code-symbols
               '(:equal     "≡"
