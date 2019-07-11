@@ -2,21 +2,42 @@
 
 ;; Place your private configuration here
 (display-time-mode 1)
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-tomorrow-night)
 (setq doom-font (font-spec :family "Monoid" :size 12))
 (set-formatter! 'yq "cat")
+
 (setq prettier-js-args '(
   "--trailing-comma" "all"
-  "single-quote" "true"
+  "--single-quote" "true"
 ))
+(setq typescript-indent-level 2)
+
 (setq
  doom-modeline-major-mode-icon t
  doom-modeline-persp-name t
  org-clock-clocked-in-display 'both
  )
 
+(setq
+ projectile-project-search-path
+  '(
+    "/Users/eric/go/src/github.com/corshatech"
+    "/Users/eric/src"
+   )
+ projectile-ignored-projects
+  '(
+    "~/go/src/github.com/corshatech/admin-console/packages"
+   )
+)
+
+ (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
+ (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
+;; Use typescript-mode for tsx files because web-mode isn't good for typescript
+(add-to-list 'auto-mode-alist '("\\.tsx$" . typescript-mode))
+
 (add-hook! 'org-mode-hook
   (setq org-agenda-span 14))
+
 
 (setq +pretty-code-symbols
       (append +pretty-code-symbols
@@ -31,6 +52,7 @@
                 :double-arrow "⇒"
                 :ellipsis "…"
                 :colon-eq "≔"
+                :unit "∅"
                 )))
 
 (after! python
@@ -64,15 +86,35 @@
 
 (after! typescript-mode
   (set-pretty-symbols! 'typescript-mode :merge t
+    ;; Functional
+    :def "function"
+    :lambda "() =>"
+    :composition "compose"
+    ;; Types
+    :null "null"
+    :unit "void"
+    :true "true" :false "false"
+    :float "number"
+    :str "string"
+    :bool "boolean"
+    ;; Flow
+    :not "!"
+    :and "&&" :or "||"
+    :for "for"
+    :return "return"
+    ;; Other
+    :yield "import"
     :double-arrow "=>"
     :arrow "->"
     :is "==="
     :isnt "!=="
     :equal      "=="
     :not-equal "!="
+    :not "!"
     :lte "<="
     :gte ">="
     :ellipsis "..."
+    :yield "import"
     )
   )
 
