@@ -3,7 +3,7 @@
 ;; Place your private configuration here
 (display-time-mode 1)
 (setq doom-theme 'doom-tomorrow-night)
-(setq doom-font (font-spec :family "Monoid" :size 12))
+(setq doom-font (font-spec :family "Dank Mono" :size 12))
 (set-formatter! 'yq "cat")
 
 (setq prettier-js-args '(
