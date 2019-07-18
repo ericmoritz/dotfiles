@@ -4,8 +4,8 @@
 (load-file "~/local.el")
 
 (display-time-mode 1)
-(setq doom-theme 'doom-dracula)
-(setq doom-font (font-spec :family "Monoid" :size 12))
+(setq doom-theme 'doom-one)
+(setq doom-font (font-spec :family "Dank Mono" :size 12))
 (set-formatter! 'yq "cat")
 
 (setq prettier-js-args '(
