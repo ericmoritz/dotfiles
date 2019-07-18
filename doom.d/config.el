@@ -32,122 +32,122 @@
   (setq org-agenda-span 14))
 
 
-(setq +pretty-code-symbols
-      (append +pretty-code-symbols
-              '(:equal     "≡"
-                :not-equal "≠"
-                :is        "≣"
-                :isnt      "≢"
-                :lte       "≤"
-                :gte       "≥"
-                :subseteq  "⊆"
-                :arrow "→"
-                :double-arrow "⇒"
-                :ellipsis "…"
-                :colon-eq "≔"
-                :unit "∅"
-                )))
+;; (setq +pretty-code-symbols
+;;       (append +pretty-code-symbols
+;;               '(:equal     "≡"
+;;                 :not-equal "≠"
+;;                 :is        "≣"
+;;                 :isnt      "≢"
+;;                 :lte       "≤"
+;;                 :gte       "≥"
+;;                 :subseteq  "⊆"
+;;                 :arrow "→"
+;;                 :double-arrow "⇒"
+;;                 :ellipsis "…"
+;;                 :colon-eq "≔"
+;;                 :unit "∅"
+;;                 )))
 
-(after! python
-  (set-pretty-symbols! 'python-mode :merge t
-    :equal      "=="
-    :not-equal "!="
-    :lte "<="
-    :gte ">="
-    :is  "is"
-    :isnt "is not"
-    :subseteq "issubset"
+;; (after! python
+;;   (set-pretty-symbols! 'python-mode :merge t
+;;     :equal      "=="
+;;     :not-equal "!="
+;;     :lte "<="
+;;     :gte ">="
+;;     :is  "is"
+;;     :isnt "is not"
+;;     :subseteq "issubset"
 
-    ;; doom builtins
+;;     ;; doom builtins
 
-    ;; Functional
-    :def "def"
-    :lambda "lambda"
-    ;; Types
-    :null "None"
-    :true "True" :false "False"
-    :int "int" :str "str"
-    :float "float"
-    :bool "bool"
-    :tuple "tuple"
-    ;; Flow
-    :not "not"
-    :in "in" :not-in "not in"
-    :and "and" :or "or"
-    :for "for"
-    :return "return" :yield "yield"))
+;;     ;; Functional
+;;     :def "def"
+;;     :lambda "lambda"
+;;     ;; Types
+;;     :null "None"
+;;     :true "True" :false "False"
+;;     :int "int" :str "str"
+;;     :float "float"
+;;     :bool "bool"
+;;     :tuple "tuple"
+;;     ;; Flow
+;;     :not "not"
+;;     :in "in" :not-in "not in"
+;;     :and "and" :or "or"
+;;     :for "for"
+;;     :return "return" :yield "yield"))
 
-(after! typescript-mode
-  (set-pretty-symbols! 'typescript-mode :merge t
-    ;; Functional
-    :def "function"
-    :lambda "() =>"
-    :composition "compose"
-    ;; Types
-    :null "null"
-    :unit "void"
-    :true "true" :false "false"
-    :float "number"
-    :str "string"
-    :bool "boolean"
-    ;; Flow
-    :not "!"
-    :and "&&" :or "||"
-    :for "for"
-    :return "return"
-    ;; Other
-    :yield "import"
-    :double-arrow "=>"
-    :arrow "->"
-    :is "==="
-    :isnt "!=="
-    :equal      "=="
-    :not-equal "!="
-    :not "!"
-    :lte "<="
-    :gte ">="
-    :ellipsis "..."
-    :yield "import"
-    )
-  )
+;; (after! typescript-mode
+;;   (set-pretty-symbols! 'typescript-mode :merge t
+;;     ;; Functional
+;;     :def "function"
+;;     :lambda "() =>"
+;;     :composition "compose"
+;;     ;; Types
+;;     :null "null"
+;;     :unit "void"
+;;     :true "true" :false "false"
+;;     :float "number"
+;;     :str "string"
+;;     :bool "boolean"
+;;     ;; Flow
+;;     :not "!"
+;;     :and "&&" :or "||"
+;;     :for "for"
+;;     :return "return"
+;;     ;; Other
+;;     :yield "import"
+;;     :double-arrow "=>"
+;;     :arrow "->"
+;;     :is "==="
+;;     :isnt "!=="
+;;     :equal      "=="
+;;     :not-equal "!="
+;;     :not "!"
+;;     :lte "<="
+;;     :gte ">="
+;;     :ellipsis "..."
+;;     :yield "import"
+;;     )
+;;   )
 
-(after! javascript-mode
-  (set-pretty-symbols! 'javascript-mode :merge t
-    :double-arrow "=>"
-    :arrow "->"
-    :is "==="
-    :isnt "!=="
-    :equal      "=="
-    :not-equal "!="
-    :lte "<="
-    :gte ">="
-    :ellipsis "..."
-    )
-  )
-;; because I'm a monster
-(after! go-mode
-  (set-pretty-symbols! 'go-mode :merge t
-    :equal      "=="
-    :not-equal "!="
-    :lte "<="
-    :gte ">="
-    :not "!"
-    :and "&&" :or "||"
+;; (after! javascript-mode
+;;   (set-pretty-symbols! 'javascript-mode :merge t
+;;     :double-arrow "=>"
+;;     :arrow "->"
+;;     :is "==="
+;;     :isnt "!=="
+;;     :equal      "=="
+;;     :not-equal "!="
+;;     :lte "<="
+;;     :gte ">="
+;;     :ellipsis "..."
+;;     )
+;;   )
+;; ;; because I'm a monster
+;; (after! go-mode
+;;   (set-pretty-symbols! 'go-mode :merge t
+;;     :equal      "=="
+;;     :not-equal "!="
+;;     :lte "<="
+;;     :gte ">="
+;;     :not "!"
+;;     :and "&&" :or "||"
 
-    ;; Functional
-    :def "func"
-    :lambda "func()"
+;;     ;; Functional
+;;     :def "func"
+;;     :lambda "func()"
 
-    ;; Types
-    :null "nil"
-    :true "true" :false "false"
-    :int "int64" :str "string"
-    :float "float64"
-    :bool "bool"
+;;     ;; Types
+;;     :null "nil"
+;;     :true "true" :false "false"
+;;     :int "int64" :str "string"
+;;     :float "float64"
+;;     :bool "bool"
 
-    ;; Flow
+;;     ;; Flow
 
-    :for "for"
-    :in ":= range"
-    :return "return"
-    :yield "<-"))
+;;     :for "for"
+;;     :in ":= range"
+;;     :return "return"
+;;     :yield "<-"))
