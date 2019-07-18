@@ -26,8 +26,8 @@
     src: "{{ item }}"
     dest: "~/.local/share/fonts/"
   loop:
-    - "files/dank-mono-italic.ttf"
-    - "files/dank-mono-regular.ttf"
+    - "files/DankMono-Italic.otf"
+    - "files/DankMono-Regular.otf"
 
 - name: refresh font cache
   command: fc-cache
