@@ -1,0 +1,7 @@
+all:
+  hosts: Erics-Corsha-Laptop.local
+  vars:
+    git_user_name: Eric Moritz
+    git_user_email: eric@corsha.com
+    GOOS: darwin
+    GOARCH: amd64

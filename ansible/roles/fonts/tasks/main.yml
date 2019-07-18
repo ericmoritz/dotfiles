@@ -11,4 +11,12 @@
     - ttf-fira-code
     - otf-fira-mono
     - ttf-fira-mono
+
+- name: install AUR fonts
+  become: true
+  become_user: aur_builder
+  aur:
+    skip_installed: true
+    name: "{{ item }}"
+  loop:
     - ttf-monoid

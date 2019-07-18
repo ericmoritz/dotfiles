@@ -1,9 +1,7 @@
----
 all:
-  hosts:
-    localhost:
-        vars:
-            git_user_name: Eric Moritz
-            git_user_email: eric@corsha.com
-            GOOS: darwin
-            GOARCH: amd64
+  hosts: eric-pc
+  vars:
+    git_user_name: Eric Moritz
+    git_user_email: eric.moritz@gmail.com
+    GOOS: linux
+    GOARCH: amd64

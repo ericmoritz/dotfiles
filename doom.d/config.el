@@ -1,8 +1,10 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+(load-file "~/local.el")
+
 (display-time-mode 1)
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-dracula)
 (setq doom-font (font-spec :family "Monoid" :size 12))
 (set-formatter! 'yq "cat")
 
@@ -10,6 +12,7 @@
   "--trailing-comma" "all"
   "--single-quote" "true"
 ))
+
 (setq typescript-indent-level 2)
 
 (setq
@@ -18,17 +21,7 @@
  org-clock-clocked-in-display 'both
  )
 
-(setq
- projectile-project-search-path
-  '(
-    "/Users/eric/go/src/github.com/corshatech"
-    "/Users/eric/src"
-   )
- projectile-ignored-projects
-  '(
-    "~/go/src/github.com/corshatech/admin-console/packages"
-   )
-)
+(setq projectile-project-search-path eam/projectile-project-search-path)
 
  (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
  (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
