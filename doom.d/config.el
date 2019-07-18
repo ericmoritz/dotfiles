@@ -5,7 +5,7 @@
 
 (display-time-mode 1)
 (setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "Dank Mono" :size 12))
+(setq doom-font (font-spec :family "Dank Mono" :size 14))
 (set-formatter! 'yq "cat")
 
 (setq prettier-js-args '(
