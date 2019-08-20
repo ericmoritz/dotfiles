@@ -6,6 +6,8 @@
 (display-time-mode 1)
 (setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "Dank Mono" :size 14))
+
+;; yq steals my YAML comments
 (set-formatter! 'yq "cat")
 
 (setq typescript-indent-level 2)
@@ -26,9 +28,6 @@
 (add-hook! 'org-mode-hook
   (setq org-agenda-span 14))
 
-;; (require 'company-tabnine)
-;; (add-to-list 'company-backends #'company-tabnine)
-
 ;; Trigger completion immediately.
 (setq company-idle-delay 0)
 
@@ -36,3 +35,10 @@
 (setq company-show-numbers t)
 
 (setq godoc-and-godef-command "go doc")
+
+(map!
+      :g "<C-next>" 'centaur-tabs-forward
+      :g "<C-prior>" 'centaur-tabs-backward
+ )
+;; TODO: make this a proper package when it is stable
+(load-file "./commitit.el")
