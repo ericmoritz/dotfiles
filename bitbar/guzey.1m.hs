@@ -22,9 +22,10 @@ modeStr Work = "Work"
 -- every three hours (at 12-3-6-9) the :05-:30 work cycle is substituted for a break, which lasts 35 minutes.
 timeToMode :: LocalTime -> Mode
 timeToMode x
-  | hour `mod` 3 == 0 && minute < 35 = LongBreak
-  | minute < 5         = Break
-  | otherwise          = Work
+  | hour `mod` 3 == 0 && minute < 35  = LongBreak
+  | minute < 5                        = Break
+  | minute >= 30 && minute < 35       = Break
+  | otherwise                         = Work
   where local =localTimeOfDay x
         hour = todHour local
         minute = todMin local
