@@ -13,7 +13,8 @@
        ;;japanese
 
        :completion
-       company           ; the ultimate code completion backend
+       company
+       ;; (company +tng)           ; the ultimate code completion backend
        ;;(helm +fuzzy)              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;; ivy              ; a search engine for love and life
@@ -35,7 +36,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;; pretty-code       ; replace bits of code with pretty symbols
-       tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -161,7 +162,7 @@
        :app
        ;;calendar
        ;;irc              ; how neckbeards socialize
-       ;;rss +org        ; emacs as an RSS reader
+       (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs as a word processor (latex + org + markdown)
        ;; +wordnut         ; wordnet (wn) search

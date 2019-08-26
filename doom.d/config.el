@@ -4,7 +4,7 @@
 (load-file "~/local.el")
 
 (display-time-mode 1)
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tomorrow-night)
 (setq doom-font (font-spec :family "Dank Mono" :size 14))
 
 ;; yq steals my YAML comments
@@ -36,9 +36,11 @@
 
 (setq godoc-and-godef-command "go doc")
 
-(map!
-      :g "<C-next>" 'centaur-tabs-forward
-      :g "<C-prior>" 'centaur-tabs-backward
- )
+(after! 'eshell
+    (push "watch" eshell-visual-commands)
+)
+
+(bind-key "C-M-<tab>" 'company-other-backend)
+
 ;; TODO: make this a proper package when it is stable
-(load-file "./commitit.el")
+(load-file "~/.doom.d/commitit.el")
