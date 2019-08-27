@@ -39,6 +39,9 @@
 (after! 'eshell
     (push "watch" eshell-visual-commands)
 )
+(after! typescript-mode
+  (set-formatter! 'prettier "cat")
+  )
 
 (bind-key "C-M-<tab>" 'company-other-backend)
 
