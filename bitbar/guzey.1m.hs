@@ -7,6 +7,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Time.Clock
 import Data.Time.LocalTime
+import System.Process
 
 
 data Mode = LongBreak | Break | Work
@@ -30,11 +31,22 @@ timeToMode x
         hour = todHour local
         minute = todMin local
 
+notifyMode :: Mode -> IO ()
+notifyMode = do
+  
+
+handleModeChange :: Mode -> Mode -> IO ()
+handleModeChange old new 
+ | old == new = return ()
+ | otherwise  = do
+     notifyMode new
 
 main :: IO ()
 main = do
   localTime <- utcToLocalTime <$> getCurrentTimeZone <*> getCurrentTime
-  let mode = timeToMode localTime
-  putStrLn $ modeStr mode
+  oldMode <- loadState
+  let newMode = timeToMode localTime
+  handleModeChange oldMode newMode
+  putStrLn $ modeStr newMode
     
 

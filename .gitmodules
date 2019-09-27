@@ -1,0 +1,3 @@
+[submodule "doom.d/themes/zaiste-emacs-theme"]
+	path = doom.d/themes/zaiste-emacs-theme
+	url = git@github.com:zaiste/zaiste-emacs-theme.git

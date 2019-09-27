@@ -4,8 +4,8 @@
 (load-file "~/local.el")
 
 (display-time-mode 1)
-(setq doom-theme 'doom-tomorrow-night)
-(setq doom-font (font-spec :family "Dank Mono" :size 14))
+(setq doom-theme 'doom-one)
+(setq doom-font (font-spec :family "Dank Mono" :size 12))
 
 ;; yq steals my YAML comments
 (set-formatter! 'yq "cat")
@@ -39,11 +39,16 @@
 (after! 'eshell
     (push "watch" eshell-visual-commands)
 )
-(after! typescript-mode
-  (set-formatter! 'prettier "cat")
-  )
+(after! 'em-term
+  (add-to-list 'eshell-visual-commands "watch"))
 
+(after! typescript-mode
+  (set-formatter! 'prettier "cat"))
 (bind-key "C-M-<tab>" 'company-other-backend)
 
 ;; TODO: make this a proper package when it is stable
 (load-file "~/.doom.d/commitit.el")
+
+(after! elfeed
+  (setq elfeed-search-filter "@2-days-ago +unread"))
+
