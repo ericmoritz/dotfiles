@@ -20,8 +20,8 @@
 
 (setq projectile-project-search-path eam/projectile-project-search-path)
 
- (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
- (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 95))
+(add-to-list 'default-frame-alist '(alpha . (100 . 95)))
 ;; Use typescript-mode for tsx files because web-mode isn't good for typescript
 (add-to-list 'auto-mode-alist '("\\.tsx$" . typescript-mode))
 
@@ -52,3 +52,11 @@
 (after! elfeed
   (setq elfeed-search-filter "@2-days-ago +unread"))
 
+
+(defun my-highlighter (level responsive display)
+  (intern (format "rainbow-delimiters-depth-%d-face" (+ (mod level 9) 1)))
+)
+(setq highlight-indent-guides-highlighter-function 'my-highlighter)
+(setq highlight-indent-guides-character ?░)
+;; (setq highlight-indent-guides-character ?┋)
+;; (setq highlight-indent-guides-character ?┆)
