@@ -4,7 +4,7 @@
 (load-file "~/local.el")
 
 (display-time-mode 1)
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tomorrow-night)
 (setq doom-font (font-spec :family "Dank Mono" :size 12))
 
 ;; yq steals my YAML comments
@@ -46,17 +46,26 @@
   (set-formatter! 'prettier "cat"))
 (bind-key "C-M-<tab>" 'company-other-backend)
 
-;; TODO: make this a proper package when it is stable
-(load-file "~/.doom.d/commitit.el")
+(after! go-mode
+  (rainbow-delimiters-mode-enable)
+)
+
 
 (after! elfeed
   (setq elfeed-search-filter "@2-days-ago +unread"))
 
 
-(defun my-highlighter (level responsive display)
-  (intern (format "rainbow-delimiters-depth-%d-face" (+ (mod level 9) 1)))
+(defun rainbow-highlighter (level responsive display)
+   (intern (format "rainbow-delimiters-depth-%d-face" (+ (mod level 9) 1)))
 )
-(setq highlight-indent-guides-highlighter-function 'my-highlighter)
-(setq highlight-indent-guides-character ?░)
+(setq highlight-indent-guides-highlighter-function 'rainbow-highlighter)
+;; (setq highlight-indent-guides-character ?░)
 ;; (setq highlight-indent-guides-character ?┋)
+;; (setq highlight-indent-guides-character ?→)
+;; (setq highlight-indent-guides-character ?⇥)
 ;; (setq highlight-indent-guides-character ?┆)
+
+(setq counsel-dash-browser-func 'browse-url)
+
+;; TODO: make this a proper package when it is stable
+(load-file "~/.doom.d/commitit.el")
