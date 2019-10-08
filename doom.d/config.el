@@ -50,6 +50,9 @@
   (rainbow-delimiters-mode-enable)
 )
 
+(after! yaml-mode
+  (rainbow-delimiters-mode-enable)
+)
 
 (after! elfeed
   (setq elfeed-search-filter "@2-days-ago +unread"))
