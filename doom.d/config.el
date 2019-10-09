@@ -72,3 +72,26 @@
 
 ;; TODO: make this a proper package when it is stable
 (load-file "~/.doom.d/commitit.el")
+
+
+(def-package! lsp-mode
+  :hook
+  (haskell-mode . lsp)
+  (python-mode . lsp)
+  (rustic-mode . lsp)
+  (reason-mode . lsp)
+  :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "reason-language-server")
+                    :major-modes '(reason-mode)
+                    :notification-handlers (ht ("client/registerCapability" 'ignore))
+                    :priority 1
+                    :server-id 'reason-ls))
+  :commands
+  lsp)
+
+
+(def-package! reason-mode
+  :mode "\\.re$"
+  :hook
+  (before-save . refmt))

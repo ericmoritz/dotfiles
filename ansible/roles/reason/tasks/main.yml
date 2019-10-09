@@ -1,0 +1,12 @@
+---
+- name: Install bs-platform
+  npm:
+    global: true
+    name: bs-platform
+
+- name: Install reason-cli
+  npm:
+    global: true
+    name: reason-cli
+
+# TODO: reason-language-server
