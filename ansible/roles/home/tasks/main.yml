@@ -1,0 +1,16 @@
+## Common things to have in my home
+
+# Create ~/bin
+- name: create ~/bin
+  file:
+    path: ~/bin
+    mode: 700
+    state: directory
+
+# Put ~/bin in my PATH
+- name: Update .bashrc
+  blockinfile:
+    path: ~/.bashrc
+    marker_begin: "# START Add ~/bin to PATH"
+    marker_end: "# END Add ~/bin to PATH"
+    block: "PATH=$PATH:~/bin"
