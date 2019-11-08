@@ -65,26 +65,30 @@
 
 
 ;; Add the persp name to the titlebar
-(setq
- frame-title-format '((:eval (let
-                                 ((name (safe-persp-name (get-current-persp))))
-                                 (if name (format "#%s — " name))
-                              )) "%b — Doom Emacs"))
-;;; ~/dotfiles/doom.d/+org.el -*- lexical-binding: t; -*-
+;; (setq
+;;  frame-title-format '((:eval (let
+;;                                  ((name (safe-persp-name (get-current-persp))))
+;;                                  (if name (format "#%s — " name))
+;;                               )) "%b — Doom Emacs"))
 ;; Org mode stuff
 
 (setq
  org-clock-clocked-in-display 'both
- org-agenda-span 14
+ ;;org-agenda-span 14
  org-agenda-custom-commands '(
                               ;; Inbox
-                              ("i" "Inbox"
-                               (
-                                (tags-todo "inbox+SCHEDULED=\"\"" )
-                                ))
+                              ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
  )
+ org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS"
 )
 
+(after! org-capture
+  (setq
+   org-capture-templates '(
+                            ("t" "TODO" entry (file+headline +org-capture-todo-file "Inbox") "* TODO %?")
+                          )
+   )
+)
 ;;----------------------------------------------------------------------------
 ;; Reason setup
 ;;----------------------------------------------------------------------------
