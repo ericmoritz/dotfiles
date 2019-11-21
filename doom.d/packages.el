@@ -8,4 +8,5 @@
 (package! flycheck-golangci-lint)
 (package! reason-mode)
 (package! mustache-mode)
+(package! command-log-mode)
 ;; (package! company-tabnine)

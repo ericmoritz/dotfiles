@@ -45,7 +45,7 @@
 )
 
 (after! elfeed
-  (setq elfeed-search-filter "@2-days-ago +unread"))
+  (setq elfeed-search-filter "@1-day-ago +unread"))
 
 
 (after! typescript-mode
@@ -66,11 +66,12 @@
 
 ;; Add the persp name to the titlebar
 ;; (setq
-;;  frame-title-format '((:eval (let
-;;                                  ((name (safe-persp-name (get-current-persp))))
-;;                                  (if name (format "#%s — " name))
-;;                               )) "%b — Doom Emacs"))
+;;   frame-title-format '((:eval (let
+;;                                   ((name (safe-persp-name (get-current-persp))))
+;;                                   (if name (format "#%s — " name))
+;;                                )) "%b — Doom Emacs"))
 ;; Org mode stuff
+;;
 
 (setq
  org-clock-clocked-in-display 'both
@@ -86,6 +87,9 @@
   (setq
    org-capture-templates '(
                             ("t" "TODO" entry (file+headline +org-capture-todo-file "Inbox") "* TODO %?")
+                            ("r" "Reading" entry (file+headline +org-capture-todo-file "Reading") "* TODO %?")
+                            ("s" "Someday" entry (file+headline +org-capture-todo-file "Someday") "* TODO %?")
+                            ("f" "Reference" entry (file+headline +org-capture-todo-file "Reference") "* %?")
                           )
    )
 )
@@ -126,12 +130,23 @@
 ;; (setq merlin-ac-setup t)
 ;; (defun reason-mode-indent-line () t)
 
-;; (defun esfmt ()
-;;   "Format using eslint --fix"
-;;   (interactive)
-;;   (call-process-region (point-min) (point-max) "~/dotfiles/ansible/roles/react/files/esfmt" t t nil buffer-file-name)
-;;   )
+(defun esfmt ()
+   "Format using eslint --fix"
+   (interactive)
+   (call-process-region (point-min) (point-max) "~/dotfiles/ansible/roles/react/files/esfmt" t t nil buffer-file-name)
+)
 
 ;;; :editor evil
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+
+(setq command-log-mode-is-global t)
+(clm/toggle-command-log-buffer)
+
+(org-clock-get-clock-string)
+org-clock-effort
+
+(json-encode (list
+  'effort (org-duration-to-minutes org-clock-effort)
+  'duration (org-duration-from-minutes (org-clock-get-clocked-time))
+))
