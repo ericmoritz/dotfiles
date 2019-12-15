@@ -7,4 +7,5 @@
 ;; (package! builtin-package :disable t)
 (package! flycheck-golangci-lint)
 (package! reason-mode)
+(package! mustache-mode)
 ;; (package! company-tabnine)

@@ -5,46 +5,36 @@
 
 (display-time-mode 1)
 (setq doom-theme 'doom-tomorrow-night)
-(setq doom-font (font-spec :family "Dank Mono" :size 12))
+;; Dank Mono is too wide or something, it makes everything on the right get
+;; clipped
+;; (setq doom-font (font-spec :family "Dank Mono" :size 12))
+(setq doom-font (font-spec :family "Fira Code" :size 12)
+      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 
-;; yq steals my YAML comments
-(set-formatter! 'yq "cat")
-
-(setq typescript-indent-level 2)
+(custom-theme-set-faces! 'doom-one
+  `(org-priority :background ,(doom-color 'bg))
+  `(mode-line :foreground ,(doom-color 'blue))
+  `(mode-line-buffer-id :foreground ,(doom-color 'fg))
+  `(mode-line-success-highlight :background ,(doom-color 'green)))
 
 (setq
- doom-modeline-major-mode-icon t
- doom-modeline-persp-name t
- org-clock-clocked-in-display 'both
- )
+  doom-modeline-major-mode-icon t
+  doom-modeline-persp-name t
+  )
 
 (setq projectile-project-search-path eam/projectile-project-search-path)
 
-(set-frame-parameter (selected-frame) 'alpha '(100 . 95))
-(add-to-list 'default-frame-alist '(alpha . (100 . 95)))
+;; (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
+;; (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
 ;; Use typescript-mode for tsx files because web-mode isn't good for typescript
 (add-to-list 'auto-mode-alist '("\\.tsx$" . typescript-mode))
 
-(add-hook! 'org-mode-hook
-  (setq org-agenda-span 14))
 
 ;; Trigger completion immediately.
 (setq company-idle-delay 0)
 
 ;; Number the candidates (use M-1, M-2 etc to select completions).
 (setq company-show-numbers t)
-
-(setq godoc-and-godef-command "go doc")
-
-(after! 'eshell
-    (push "watch" eshell-visual-commands)
-)
-(after! 'em-term
-  (add-to-list 'eshell-visual-commands "watch"))
-
-(after! typescript-mode
-  (set-formatter! 'prettier "cat"))
-(bind-key "C-M-<tab>" 'company-other-backend)
 
 (after! go-mode
   (rainbow-delimiters-mode-enable)
@@ -58,40 +48,90 @@
   (setq elfeed-search-filter "@2-days-ago +unread"))
 
 
+(after! typescript-mode
+  (setq typescript-indent-level 2)
+  (set-formatter! 'prettier "cat")
+  (add-hook 'before-save-hook (lambda ()
+                                (message "running esfmt on %s" major-mode)
+                                (when (eq major-mode 'typescript-mode) (esfmt))))
+)
+
 (defun rainbow-highlighter (level responsive display)
-   (intern (format "rainbow-delimiters-depth-%d-face" (+ (mod level 9) 1)))
+  (intern (format "rainbow-delimiters-depth-%d-face" (+ (mod level 9) 1)))
 )
 (setq highlight-indent-guides-highlighter-function 'rainbow-highlighter)
-;; (setq highlight-indent-guides-character ?░)
-;; (setq highlight-indent-guides-character ?┋)
-;; (setq highlight-indent-guides-character ?→)
-;; (setq highlight-indent-guides-character ?⇥)
-;; (setq highlight-indent-guides-character ?┆)
 
 (setq counsel-dash-browser-func 'browse-url)
 
-;; TODO: make this a proper package when it is stable
-(load-file "~/.doom.d/commitit.el")
 
+;; Add the persp name to the titlebar
+;; (setq
+;;  frame-title-format '((:eval (let
+;;                                  ((name (safe-persp-name (get-current-persp))))
+;;                                  (if name (format "#%s — " name))
+;;                               )) "%b — Doom Emacs"))
+;; Org mode stuff
 
-(def-package! lsp-mode
-  :hook
-  (haskell-mode . lsp)
-  (python-mode . lsp)
-  (rustic-mode . lsp)
-  (reason-mode . lsp)
-  :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection "reason-language-server")
-                    :major-modes '(reason-mode)
-                    :notification-handlers (ht ("client/registerCapability" 'ignore))
-                    :priority 1
-                    :server-id 'reason-ls))
-  :commands
-  lsp)
+(setq
+ org-clock-clocked-in-display 'both
+ ;;org-agenda-span 14
+ org-agenda-custom-commands '(
+                              ;; Inbox
+                              ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
+ )
+ org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS"
+)
 
+(after! org-capture
+  (setq
+   org-capture-templates '(
+                            ("t" "TODO" entry (file+headline +org-capture-todo-file "Inbox") "* TODO %?")
+                          )
+   )
+)
+;;----------------------------------------------------------------------------
+;; Reason setup
+;;----------------------------------------------------------------------------
+;; (defun shell-cmd (cmd)
+;;   "Returns the stdout output of a shell command or nil if the command returned
+;;    an error"
+;;   (car (ignore-errors (apply 'process-lines (split-string cmd)))))
 
-(def-package! reason-mode
-  :mode "\\.re$"
-  :hook
-  (before-save . refmt))
+;; (defun reason-cmd-where (cmd)
+;;   (let ((where (shell-cmd cmd)))
+;;     (if (not (string-equal "unknown flag ----where" where))
+;;       where)))
+
+;; (let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
+;;                       (shell-cmd "which refmt")
+;;                       (shell-cmd "which bsrefmt")))
+;;        (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
+;;                        (shell-cmd "which ocamlmerlin")))
+;;        (merlin-base-dir (when merlin-bin
+;;                           (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+;;   ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+;;   (when merlin-bin
+;;     (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+;;     (setq merlin-command merlin-bin))
+
+;;   (when refmt-bin
+;;     (setq refmt-command refmt-bin)))
+
+;; (require 'reason-mode)
+;; (require 'merlin)
+;; (add-hook 'reason-mode-hook (lambda ()
+;;                               (add-hook 'before-save-hook 'refmt-before-save)
+;;                               (merlin-mode)))
+
+;; (setq merlin-ac-setup t)
+;; (defun reason-mode-indent-line () t)
+
+;; (defun esfmt ()
+;;   "Format using eslint --fix"
+;;   (interactive)
+;;   (call-process-region (point-min) (point-max) "~/dotfiles/ansible/roles/react/files/esfmt" t t nil buffer-file-name)
+;;   )
+
+;;; :editor evil
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)

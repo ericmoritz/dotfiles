@@ -1,4 +1,20 @@
 ---
+- name: Install gpatch
+  homebrew:
+    name: gpatch
+
+- name: Install ocaml
+  homebrew:
+    name: ocaml
+
+- name: Install opam
+  homebrew:
+    name: opam
+
+# Couldn't get this to work, run it manually
+# - name: Install Merlin
+#   command: 'opam init && opam install merlin.2.5.4'
+
 - name: Install bs-platform
   npm:
     global: true
@@ -9,4 +25,13 @@
     global: true
     name: reason-cli
 
+- name: Install ocaml-language-server
+  npm:
+    global: true
+    name: ocaml-language-server
+#
 # TODO: reason-language-server
+# - name: Install reason-language-server
+#   npm:
+#     global: true
+#     name: reason-language-server
