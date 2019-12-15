@@ -1,0 +1,3 @@
+- hosts: k8smaster
+  roles:
+    - k3s-pi

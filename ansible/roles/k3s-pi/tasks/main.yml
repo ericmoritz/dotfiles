@@ -1,0 +1,43 @@
+# - name: Download getk3s script
+#   get_url:
+#     checksum: "sha256:a64a32675357abf8793a8a638252174ef1be5b7fae1988d2b364e8c2c6ba0c7d"
+#     dest: "/tmp/getk3s.sh"
+#     mode: "+x"
+#     url: "https://get.k3s.io"
+
+# - name: Bootstrap k8s
+#   command: "/tmp/getk3s.sh"
+
+- name: Download k3sup
+  get_url:
+    checksum: "sha256:f3bd1d361495b4351fb1024482f0ecdd4f6019767bab006f53a122fbaddd7665"
+    dest: "/tmp/get-k3sup.sh"
+    mode: "+x"
+    url: "https://get.k3sup.dev"
+
+- name: Install k3sup
+  become: yes
+  command: "/tmp/get-k3sup.sh"
+
+- name: Install k3s
+  command: >
+    k3sup install --local --context={{ k8s_context | tojson }} --ip={{ ip | tojson }} 
+
+- name: Ensure k3s is running
+  service:
+    name: k3s
+    enabled: yes
+    state: started
+
+- name: Copy kubeconfig locally
+  fetch:
+    dest: kubeconfig
+    src: kubeconfig
+
+- debug:
+    msg: |
+      Remote kubeconfig was copied locally to `./kubeconfig`, you can merge the config with yours be running the following:
+
+      ```
+      KUBECONFIG=~/.kube/config:./kubeconfig kubectl config view --flatten
+      ```
