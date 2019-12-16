@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # This should probably be a node script
 set -euo pipefail
-
 if [ $# -eq 0 ]; then
 	echo >&2 "Not filename given, can't format"
 	exit 1
@@ -10,5 +9,6 @@ if [ ! -f "$1" ]; then
 	echo >&2 "$1 is not a file"
 	exit 1
 fi
-
-eslint --fix-dry-run --stdin --stdin-filename="$1" --format json | jq -r '.[0].output '
+#SRC=$(cat $1)
+#npx eslint --fix-dry-run --format json "$1" | jq --arg src "$SRC" -r '.[0].output // $src '
+cat

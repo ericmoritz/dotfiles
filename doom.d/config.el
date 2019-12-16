@@ -4,18 +4,34 @@
 (load-file "~/local.el")
 
 (display-time-mode 1)
-(setq doom-theme 'doom-tomorrow-night)
+
+;;; Favorite Themes
+;; (load-theme 'doom-oceanic) ;; *
+;; (load-theme 'doom-palenight)
+;; (load-theme 'doom-vibrant)
+;; (load-theme 'doom-oceanic-next)
+;; (load-theme 'doom-challenger-deep)
+;; (load-theme 'doom-sourcerer)
+;; (load-theme 'doom-one)
+;; (load-theme 'doom-wilmersdorf)
+
+
+
 ;; Dank Mono is too wide or something, it makes everything on the right get
 ;; clipped
-;; (setq doom-font (font-spec :family "Dank Mono" :size 12))
-(setq doom-font (font-spec :family "Fira Code" :size 12)
+; (setq doom-font (font-spec :family "Dank Mono" :size 12))
+(setq
+      doom-theme 'doom-palenight
+      doom-font (font-spec :family "Fira Code" :size 12)
+      ;; doom-font (font-spec :family "Dank Mono" :size 12))
       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 
-(custom-theme-set-faces! 'doom-one
-  `(org-priority :background ,(doom-color 'bg))
-  `(mode-line :foreground ,(doom-color 'blue))
-  `(mode-line-buffer-id :foreground ,(doom-color 'fg))
-  `(mode-line-success-highlight :background ,(doom-color 'green)))
+
+;; (custom-theme-set-faces! 'doom-one
+;;   `(org-priority :background ,(doom-color 'bg))
+;;   `(mode-line :foreground ,(doom-color 'blue))
+;;   `(mode-line-buffer-id :foreground ,(doom-color 'fg))
+;;   `(mode-line-success-highlight :background ,(doom-color 'green)))
 
 (setq
   doom-modeline-major-mode-icon t
@@ -42,6 +58,8 @@
 
 (after! yaml-mode
   (rainbow-delimiters-mode-enable)
+  ;; disable format-all-mode
+  (format-all-mode)
 )
 
 (after! elfeed
@@ -75,10 +93,11 @@
 
 (setq
  org-clock-clocked-in-display 'both
- ;;org-agenda-span 14
+ org-agenda-span 14
  org-agenda-custom-commands '(
                               ;; Inbox
                               ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
+                              ("r" "Reading" ((tags-todo "reading" )))
  )
  org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS"
 )
@@ -139,14 +158,3 @@
 ;;; :editor evil
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
-
-(setq command-log-mode-is-global t)
-(clm/toggle-command-log-buffer)
-
-(org-clock-get-clock-string)
-org-clock-effort
-
-(json-encode (list
-  'effort (org-duration-to-minutes org-clock-effort)
-  'duration (org-duration-from-minutes (org-clock-get-clocked-time))
-))
