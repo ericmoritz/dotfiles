@@ -1,0 +1,8 @@
+---
+- hosts: local
+  roles:
+    - pi-bootstrap
+  vars:
+    hostname: "k8s-master"
+    boot_dir: "/run/media/eric/boot"
+    root_dir: "/run/media/eric/rootfs"

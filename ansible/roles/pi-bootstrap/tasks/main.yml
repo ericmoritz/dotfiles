@@ -1,0 +1,37 @@
+- name: Unable UART
+  become: true
+  ini_file:
+    path: "{{ boot_dir }}/config.txt"
+    create: no
+    no_extra_spaces: yes
+
+    section: "all"
+    option: "enable_uart"
+    value: "1"
+
+- name: Enable Containers
+  become: true
+  file:
+    path: "{{ boot_dir }}/"
+    src: "files/cmdline.txt"
+
+- name: Enable SSH
+  become: true
+  file:
+    path: "{{ boot_dir }}/ssh"
+    state: touch
+
+- name: Enable WIFI
+  become: true
+  template:
+    dest: "{{ boot_dir }}/wpa_supplicant.conf"
+    src: "templates/wpa_supplicant.conf.j2"
+
+- name: set hostname
+  become: true
+  template:
+    dest: "{{ root_dir }}/etc/hostname"
+    src: "hostname.j2"
+
+- debug:
+    msg: "Bootstrap complete, unmount SD card and boot up the PI"

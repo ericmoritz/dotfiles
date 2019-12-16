@@ -2,3 +2,4 @@
 .spacemacs.env
 *.retry
 /.etc/
+/ansible/kubeconfig
