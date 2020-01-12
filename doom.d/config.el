@@ -3,7 +3,31 @@
 ;; Place your private configuration here
 (load-file "~/local.el")
 
-(display-time-mode 1)
+;; Stolen from https://github.com/hlissner/doom-emacs-private/blob/master/config.el
+(setq
+      ;; Line numbers are pretty slow all around. The performance boost of
+      ;; disabling them outweighs the utility of always keeping them on.
+      display-line-numbers-type nil
+
+      ;; On-demand code completion. I don't often need it.
+      company-idle-delay nil
+
+      ;; lsp-ui-sideline is redundant with eldoc and much more invasive, so
+      ;; disable it by default.
+      lsp-ui-sideline-enable nil
+      lsp-enable-indentation nil
+      lsp-enable-on-type-formatting nil
+      lsp-enable-symbol-highlighting nil
+      lsp-enable-file-watchers nil
+
+      ;; Disable help mouse-overs for mode-line segments (i.e. :help-echo text).
+      ;; They're generally unhelpful and only add confusing visual clutter.
+      mode-line-default-help-echo nil
+      show-help-function nil)
+
+
+
+;; (display-time-mode 1)
 
 ;;; Favorite Themes
 ;; (load-theme 'doom-oceanic) ;; *
@@ -54,12 +78,12 @@
 
 (after! go-mode
   (rainbow-delimiters-mode-enable)
+  (add-hook 'before-save-hook (lambda ()
+                                (when (eq major-mode 'go-mode) (format-all-buffer))))
 )
 
 (after! yaml-mode
   (rainbow-delimiters-mode-enable)
-  ;; disable format-all-mode
-  (format-all-mode)
 )
 
 (after! elfeed
@@ -68,7 +92,6 @@
 
 (after! typescript-mode
   (setq typescript-indent-level 2)
-  (set-formatter! 'prettier "cat")
   (add-hook 'before-save-hook (lambda ()
                                 (message "running esfmt on %s" major-mode)
                                 (when (eq major-mode 'typescript-mode) (esfmt))))
@@ -83,15 +106,16 @@
 
 
 ;; Add the persp name to the titlebar
-;; (setq
-;;   frame-title-format '((:eval (let
-;;                                   ((name (safe-persp-name (get-current-persp))))
-;;                                   (if name (format "#%s — " name))
-;;                                )) "%b — Doom Emacs"))
+(setq
+  frame-title-format '((:eval (let
+                                  ((name (safe-persp-name (get-current-persp))))
+                                  (if name (format "#%s — " name))
+                               )) "%b — Doom Emacs"))
 ;; Org mode stuff
 ;;
 
 (setq
+ org-use-property-inheritance t
  org-clock-clocked-in-display 'both
  org-agenda-span 14
  org-agenda-custom-commands '(
@@ -99,7 +123,7 @@
                               ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
                               ("r" "Reading" ((tags-todo "reading" )))
  )
- org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS"
+ org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS %TICKET"
 )
 
 (after! org-capture

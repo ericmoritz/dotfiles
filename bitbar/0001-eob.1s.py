@@ -8,5 +8,8 @@ now = datetime.now()
 eob_time = datetime.strptime("{} {}".format(now.date().strftime("%m-%d-%y"), EOB), "%m-%d-%y %H:%M")
 
 diff = eob_time - now
-diff = ":".join(str(diff).split(":")[:2])
-print(diff + "h till EOB")
+if diff.total_seconds() < 0:
+    print("Go Home!")
+else:
+    diff = ":".join(str(diff).split(":")[:2])
+    print(diff + "h")
