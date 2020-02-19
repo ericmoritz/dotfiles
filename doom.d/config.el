@@ -47,7 +47,7 @@
 
 ;; mimic VS Code
 (setq
-      doom-font (font-spec :family "Menlo" :size 12)
+      doom-font (font-spec :family "Menlo" :size 13)
       doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 13))
 
 
