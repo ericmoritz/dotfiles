@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: test
 # uuid:
-# key: tests
+# key: test
 # condition: t
 # --
 func Test$0(t *testing.T) {

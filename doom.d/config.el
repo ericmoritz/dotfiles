@@ -33,29 +33,23 @@
 ;; (load-theme 'doom-oceanic) ;; *
 ;; (load-theme 'doom-palenight)
 ;; (load-theme 'doom-vibrant)
-;; (load-theme 'doom-oceanic-next)
+;; (load-doom 'oceanic-theme-next)
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-sourcerer)
 ;; (load-theme 'doom-one)
 ;; (load-theme 'doom-wilmersdorf)
+;; (load-theme 'doom-outrun-electric)
 
+;;;;
+;; Look and Feel
+;;;;
+(setq doom-theme 'doom-dracula)
 
-
-;; Dank Mono is too wide or something, it makes everything on the right get
-;; clipped
-; (setq doom-font (font-spec :family "Dank Mono" :size 12))
+;; mimic VS Code
 (setq
-      doom-theme 'doom-palenight
-      doom-font (font-spec :family "Fira Code" :size 12)
-      ;; doom-font (font-spec :family "Dank Mono" :size 12))
-      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
+      doom-font (font-spec :family "Menlo" :size 12)
+      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 13))
 
-
-;; (custom-theme-set-faces! 'doom-one
-;;   `(org-priority :background ,(doom-color 'bg))
-;;   `(mode-line :foreground ,(doom-color 'blue))
-;;   `(mode-line-buffer-id :foreground ,(doom-color 'fg))
-;;   `(mode-line-success-highlight :background ,(doom-color 'green)))
 
 (setq
   doom-modeline-major-mode-icon t
@@ -117,7 +111,6 @@
 (setq
  org-use-property-inheritance t
  org-clock-clocked-in-display 'both
- org-agenda-span 14
  org-agenda-custom-commands '(
                               ;; Inbox
                               ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
@@ -136,42 +129,6 @@
                           )
    )
 )
-;;----------------------------------------------------------------------------
-;; Reason setup
-;;----------------------------------------------------------------------------
-;; (defun shell-cmd (cmd)
-;;   "Returns the stdout output of a shell command or nil if the command returned
-;;    an error"
-;;   (car (ignore-errors (apply 'process-lines (split-string cmd)))))
-
-;; (defun reason-cmd-where (cmd)
-;;   (let ((where (shell-cmd cmd)))
-;;     (if (not (string-equal "unknown flag ----where" where))
-;;       where)))
-
-;; (let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
-;;                       (shell-cmd "which refmt")
-;;                       (shell-cmd "which bsrefmt")))
-;;        (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
-;;                        (shell-cmd "which ocamlmerlin")))
-;;        (merlin-base-dir (when merlin-bin
-;;                           (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
-;;   ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
-;;   (when merlin-bin
-;;     (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
-;;     (setq merlin-command merlin-bin))
-
-;;   (when refmt-bin
-;;     (setq refmt-command refmt-bin)))
-
-;; (require 'reason-mode)
-;; (require 'merlin)
-;; (add-hook 'reason-mode-hook (lambda ()
-;;                               (add-hook 'before-save-hook 'refmt-before-save)
-;;                               (merlin-mode)))
-
-;; (setq merlin-ac-setup t)
-;; (defun reason-mode-indent-line () t)
 
 (defun esfmt ()
    "Format using eslint --fix"
