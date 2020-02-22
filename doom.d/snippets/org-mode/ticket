@@ -2,13 +2,26 @@
 # name: ticket
 # --
 ** $1: $2 :ticket:
-*** $1 Implementation :impl:
+*** TODO $1: Implementation :impl:
 **** TODO $1:
-*** $1 Peer Review :pr:
-**** TODO $1: Create Peer Review
+*** TODO $1: Peer Review :pr:
+**** TODO $1: Create Peer Review :pr:
+:PROPERTIES:
+:Effort:   1:00
+:END:
      - [ ] Write Testing Steps
      - [ ] Create PR for ???
-*** $1 QA :qa:
+**** TODO $1: Complete PR :pr:
+:PROPERTIES:
+:Effort:   1:00
+:END:
+*** TODO $1: QA :qa:
 **** TODO $1: QA
-*** $1 Finish :finish:
+:PROPERTIES:
+:Effort:   1:00
+:END:
+*** TODO $1: Finish :finish:
 **** TODO $1: Clean up branches
+:PROPERTIES:
+:Effort:   1:00
+:END:

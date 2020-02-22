@@ -43,7 +43,7 @@
 ;;;;
 ;; Look and Feel
 ;;;;
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dark+)
 
 ;; mimic VS Code
 (setq
@@ -105,6 +105,7 @@
                                   ((name (safe-persp-name (get-current-persp))))
                                   (if name (format "#%s — " name))
                                )) "%b — Doom Emacs"))
+
 ;; Org mode stuff
 ;;
 
