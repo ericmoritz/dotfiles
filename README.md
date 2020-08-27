@@ -16,5 +16,7 @@ home-manager switch
 
 ## TODO
 
+- [X] Use stow to setup the initial symlinks
+- [X] Setup eric-t470 for home-manager
+- [ ] Setup work computer for home-manager
 - [ ] Use NixOps to deploy a etc/nixos/configuration.nix to localhost
-- [ ] Use stow to setup the initial symlinks
