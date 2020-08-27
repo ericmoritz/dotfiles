@@ -8,7 +8,6 @@
 ;; More information about these modules (and what flags they support) can be
 ;; found in modules/README.org.
 
-;; Where is this file?
 (doom! :input
        ;;chinese
        ;;japanese
