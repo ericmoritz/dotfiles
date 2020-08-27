@@ -1,5 +1,0 @@
-(setq format-all-packages '(format-all))
-(defun format-all/init-format-all ()
-  (use-package format-all)
-  (add-hook 'after-change-major-mode-hook 'format-all-mode)
-  )

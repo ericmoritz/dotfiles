@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: prelude
-# key: prelude
-# --
-#!/usr/bin/env bash
-set -euo pipefail
