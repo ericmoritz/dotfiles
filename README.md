@@ -11,7 +11,9 @@ These are my dotfiles and home-manager configuration
 
 ``` sh
 nix-shell -p stow --run 'stow -t ~ dotfiles'
+git clone https://github.com/hlissner/doom-emacs.git ~/.emacs.d
 home-manager switch
+~/.emacs.d/bin/doom sync
 ```
 
 ## TODO
