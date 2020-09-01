@@ -10,6 +10,11 @@ let
      doomPrivateDir = ./doom.d;  # Directory containing your config.el init.el
                                  # and packages.el files
    };
+
+  comma = pkgs.callPackage
+    (fetchTarball
+      https://github.com/Shopify/comma/archive/4a62ec17e20ce0e738a8e5126b4298a73903b468.tar.gz) # master as of 2020-08-31
+    {};
 in
 {
   # Let Home Manager install and manage itself.
@@ -49,6 +54,10 @@ in
     signal-desktop
     slack
     doom-emacs
+    proselint
+    discord
+    evince
+    comma
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
@@ -62,12 +71,13 @@ in
     syncthing-gtk
 
     # Haskell tooling
-    # zlib.dev
-    # zlib.out
-    # pkgconfig
-    # stack
-    # ghc
-    # haskellPackages.ghcide
+    zlib.dev
+    zlib.out
+    pkgconfig
+    stack
+    ghc
+    haskellPackages.ghcide
+    haskellPackages.brittany
 
   ];
 
@@ -85,7 +95,10 @@ in
     };
   };
 
-  
+  home.file.".profile".text = ''
+  # enable touch for firefox
+  export MOZ_USE_XINPUT2=1
+  '';
   home.file.".emacs.d/init.el".text = ''
      (load "default.el")
   '';
