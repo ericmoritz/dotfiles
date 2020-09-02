@@ -9,7 +9,7 @@
 (package! reason-mode)
 (package! mustache-mode)
 (package! org-web-tools)
-(package! ox-jira)
+;; (package! ox-jira)
 (package! ormolu)
 ;; (package! command-log-mode)
 ;; (package! company-tabnine)

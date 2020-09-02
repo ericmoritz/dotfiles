@@ -4,12 +4,12 @@ let
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/32b46dd897ab2143a609988a04d87452f0bbef59.tar.gz; # unstable
 
-  # doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-  #   url = https://github.com/vlaci/nix-doom-emacs/archive/77ca84bce93e928c59ecda5113e90df64109f41b.tar.gz; # master as of 2020-08-31
-  #  }) {
-  #    doomPrivateDir = ./doom.d;  # Directory containing your config.el init.el
-  #                                # and packages.el files
-  #  };
+  doom-emacs = pkgs.callPackage (builtins.fetchTarball {
+    url = https://github.com/vlaci/nix-doom-emacs/archive/77ca84bce93e928c59ecda5113e90df64109f41b.tar.gz; # master as of 2020-08-31
+   }) {
+     doomPrivateDir = ./doom.d;  # Directory containing your config.el init.el
+                                 # and packages.el files
+   };
 
   comma = pkgs.callPackage
     (fetchTarball
@@ -51,7 +51,7 @@ in
 
   home.packages = with pkgs; [
     # productivity tools
-    emacs
+    doom-emacs
     obs-studio
     ripgrep
     google-chrome
@@ -64,7 +64,7 @@ in
 
     # Tools needed by doom emacs's modules
     fd
-    aspell
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science]))
     nixfmt
     shellcheck
     proselint
@@ -81,7 +81,7 @@ in
     goimports
     gotests
     gomodifytags
-    golangci-lint
+    # golangci-lint
     syncthing-gtk
 
     # Haskell tooling
@@ -110,4 +110,9 @@ in
     };
   };
 
+  home.file.".profile".text = ''
+  '';
+  home.file.".emacs.d/init.el".text = ''
+     (load "default.el")
+  '';
 }
