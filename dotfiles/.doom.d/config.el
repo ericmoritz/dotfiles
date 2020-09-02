@@ -140,3 +140,12 @@
 ;;; :editor evil
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+
+(map!
+ :map haskell-mode-map
+ :localleader
+ "f" #'ormolu-format-buffer)
+
+(after! haskell-mode
+        (add-hook 'haskell-mode-hook 'ormolu-format-on-save-mode)
+)

@@ -10,5 +10,6 @@
 (package! mustache-mode)
 (package! org-web-tools)
 (package! ox-jira)
+(package! ormolu)
 ;; (package! command-log-mode)
 ;; (package! company-tabnine)

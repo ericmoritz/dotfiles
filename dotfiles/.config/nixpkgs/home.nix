@@ -15,6 +15,9 @@ let
     (fetchTarball
       https://github.com/Shopify/comma/archive/4a62ec17e20ce0e738a8e5126b4298a73903b468.tar.gz) # master as of 2020-08-31
     {};
+
+  # NPM Packages not in the NixOS repo
+  adhocNode = pkgs.callPackage (import ./pkgs/node) {};
 in
 {
   # Let Home Manager install and manage itself.
@@ -59,6 +62,17 @@ in
     evince
     comma
 
+    # Tools needed by doom emacs's modules
+    fd
+    aspell
+    nixfmt
+    shellcheck
+    proselint
+    pandoc
+    mdl
+    nodePackages.js-beautify
+    adhocNode.stylelint
+
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
     unstable.gore
@@ -78,6 +92,7 @@ in
     ghc
     haskellPackages.ghcide
     haskellPackages.brittany
+    ormolu
 
   ];
 
