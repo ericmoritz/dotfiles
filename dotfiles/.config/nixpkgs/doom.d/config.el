@@ -37,6 +37,7 @@
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-sourcerer)
 ;; (load-theme 'doom-one)
+;; (load-theme 'doom-dracula)
 ;; (load-theme 'doom-wilmersdorf)
 ;; (load-theme 'doom-outrun-electric)
 
@@ -45,11 +46,8 @@
 ;;;;
 (setq doom-theme 'doom-dark+)
 
-;; mimic VS Code
-(setq
-      doom-font (font-spec :family "Menlo" :size 13)
-      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 13))
-
+(setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 16))
 
 (setq
   doom-modeline-major-mode-icon t
