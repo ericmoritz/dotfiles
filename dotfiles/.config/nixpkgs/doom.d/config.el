@@ -81,7 +81,7 @@
 )
 
 (after! elfeed
-  (setq elfeed-search-filter "@1-day-ago +unread"))
+  (setq elfeed-search-filter "@14-days-ago +unread +mustread"))
 
 
 (after! typescript-mode
