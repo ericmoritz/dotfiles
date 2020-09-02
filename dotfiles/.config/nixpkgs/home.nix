@@ -72,6 +72,10 @@ in
     mdl
     nodePackages.js-beautify
     adhocNode.stylelint
+    gnutls
+    gnupg
+    pass
+    pinentry-curses
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
