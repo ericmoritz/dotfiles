@@ -148,9 +148,6 @@
         (add-hook 'haskell-mode-hook 'ormolu-format-on-save-mode)
 )
 
-(setq elfeed-db-directory (concat doom-etc-dir "elfeed/db/")
-      elfeed-enclosure-default-dir (concat doom-etc-dir "elfeed/enclosures/"))
-
 (set-irc-server! "chat.freenode.net"
   `(:tls t
     :port 6697
