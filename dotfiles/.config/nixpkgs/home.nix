@@ -1,20 +1,10 @@
 { config, pkgs, ... }:
 let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/32b46dd897ab2143a609988a04d87452f0bbef59.tar.gz; # unstable
-
-  doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-    url = https://github.com/vlaci/nix-doom-emacs/archive/77ca84bce93e928c59ecda5113e90df64109f41b.tar.gz; # master as of 2020-08-31
-   }) {
-     doomPrivateDir = ./doom.d;  # Directory containing your config.el init.el
-                                 # and packages.el files
-   };
-
-  comma = pkgs.callPackage
-    (fetchTarball
-      https://github.com/Shopify/comma/archive/4a62ec17e20ce0e738a8e5126b4298a73903b468.tar.gz) # master as of 2020-08-31
-    {};
+  sources = import ./nix/sources.nix;
+  unstable = import sources.nixpkgs-unstable { config.allowUnfree = true;};
+  doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
+     doomPrivateDir = ./doom.d;
+  };
 
   # NPM Packages not in the NixOS repo
   adhocNode = pkgs.callPackage (import ./pkgs/node) {};
@@ -38,29 +28,29 @@ in
   # changes in each release.
   home.stateVersion = "20.09";
 
-  # add the unstable channel so that we can cherry pick from it
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
 
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    # fun
+    unstable.spotify
+    unstable.discord
+    unstable.slack
+
+    # nix stuff
+    niv
+    direnv
+   
     # productivity tools
     doom-emacs
     obs-studio
     ripgrep
     google-chrome
     signal-desktop
-    slack
     proselint
-    discord
     evince
-    comma
+    audacity
+    vscode
 
     # Tools needed by doom emacs's modules
     fd
@@ -114,9 +104,15 @@ in
     };
   };
 
-  home.file.".profile".text = ''
+  programs.bash.enable = true;
+  programs.bash.initExtra = ''
+    eval "$(direnv hook bash)"
+    PATH=$PATH:~/.npm-global/bin
   '';
+  
   home.file.".emacs.d/init.el".text = ''
      (load "default.el")
   '';
+
+  services.lorri.enable = true;
 }
