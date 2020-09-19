@@ -11,5 +11,6 @@
 (package! org-web-tools)
 ;; (package! ox-jira)
 (package! ormolu)
+(package! dhall-mode :pin "ef4d33debe")
 ;; (package! command-log-mode)
 ;; (package! company-tabnine)
