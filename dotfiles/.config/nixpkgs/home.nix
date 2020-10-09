@@ -6,6 +6,8 @@ let
      doomPrivateDir = ./doom.d;
   };
 
+  private = import sources.private-nix { };
+
   # NPM Packages not in the NixOS repo
   adhocNode = pkgs.callPackage (import ./pkgs/node) {};
 in
@@ -36,7 +38,17 @@ in
     unstable.spotify
     unstable.discord
     unstable.slack
+    unstable.minecraft
+    unstable.zulip
+    unstable.haskellPackages.neuron
+    unstable.sidequest
+    unstable.zoom-us
 
+    # fonts
+    unstable.nanum-gothic-coding
+    private.dankmono
+    comic-relief
+   
     # nix stuff
     niv
     direnv
@@ -88,6 +100,8 @@ in
     haskellPackages.brittany
     ormolu
 
+    # misc
+    xdg_utils
   ];
 
   programs = {
@@ -115,4 +129,6 @@ in
   '';
 
   services.lorri.enable = true;
+
+  fonts.fontconfig.enable = true;
 }
