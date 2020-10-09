@@ -78,6 +78,7 @@ in
     gnupg
     pass
     pinentry-curses
+    graphviz
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
@@ -102,6 +103,7 @@ in
 
     # misc
     xdg_utils
+    sqlite
   ];
 
   programs = {
@@ -124,9 +126,29 @@ in
     PATH=$PATH:~/.npm-global/bin
   '';
   
-  home.file.".emacs.d/init.el".text = ''
-     (load "default.el")
-  '';
+  home.file = {
+    ".emacs.d/init.el".text = ''
+      (load "default.el")
+    '';
+
+    ".local/share/applications/org-protocol.desktop".text = ''
+      [Desktop Entry]
+      Name=org-protocol
+      Exec=emacsclient %u
+      Type=Application
+      Terminal=false
+      Categories=System;
+      MimeType=x-scheme-handler/org-protocol;
+    '';
+
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
+    };
+  };
 
   services.lorri.enable = true;
 
