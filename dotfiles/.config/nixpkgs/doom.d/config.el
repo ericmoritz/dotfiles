@@ -44,9 +44,8 @@
 ;;;;
 ;; Look and Feel
 ;;;;
-(setq doom-theme 'doom-dracula)
-
-(setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
+(setq doom-theme 'doom-fairy-floss)
+(setq doom-font (font-spec :family "Dank Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "sans" :size 16))
 
 (setq
@@ -155,3 +154,4 @@
     :sasl-username "ericmoritz"
     :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
     :channels ("#haskell-beginners" "#haskell" "#nixos" "##rust")))
+
