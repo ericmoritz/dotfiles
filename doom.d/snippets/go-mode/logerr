@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: logerr
+# key: logerr
+# --
+log.WithFields(log.Fields{
+    "func":  funcName,
+    "error": err,
+}).Error("$0")

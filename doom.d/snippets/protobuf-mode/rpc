@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: rpc
+# key: rpc  
+# --
+// $1 ...
+rpc $1($1Request) returns ($1Response) {
+    option(google.api.http) = {
+      post: "/api/v3"
+      body: "*"
+    };
+}
+
+// $1Request ...
+message $1Request {}
+
+// $1Response ...
+message $1Response {}

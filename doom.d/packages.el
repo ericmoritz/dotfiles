@@ -10,5 +10,7 @@
 (package! mustache-mode)
 (package! org-web-tools)
 (package! ox-jira)
+(package! groovy-mode)
+(package! feature-mode)
 ;; (package! command-log-mode)
 ;; (package! company-tabnine)
