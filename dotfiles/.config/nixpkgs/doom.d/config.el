@@ -83,9 +83,6 @@
 
 (after! typescript-mode
   (setq typescript-indent-level 2)
-  (add-hook 'before-save-hook (lambda ()
-                                (message "running esfmt on %s" major-mode)
-                                (when (eq major-mode 'typescript-mode) (esfmt))))
 )
 
 (defun rainbow-highlighter (level responsive display)
@@ -106,33 +103,41 @@
 ;; Org mode stuff
 ;;
 
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  (org-narrow-to-subtree)
+  (goto-char (point-max)))
+
 (setq
  org-use-property-inheritance t
  org-clock-clocked-in-display 'both
- org-agenda-custom-commands '(
-                              ;; Inbox
-                              ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
-                              ("r" "Reading" ((tags-todo "reading" )))
- )
  org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS %TICKET"
 )
-
 (after! org-capture
   (setq
-   org-capture-templates '(
-                            ("t" "TODO" entry (file+headline +org-capture-todo-file "Inbox") "* TODO %?")
-                            ("r" "Reading" entry (file+headline +org-capture-todo-file "Reading") "* TODO %?")
-                            ("s" "Someday" entry (file+headline +org-capture-todo-file "Someday") "* TODO %?")
-                            ("f" "Reference" entry (file+headline +org-capture-todo-file "Reference") "* %?")
-                          )
-   )
+        org-capture-templates '(
+                ("t" "TODO" plain (function org-journal-find-location)
+                "** TODO %^{Title}%?"
+                :jump-to-captured t :immediate-finish t
+                )
+
+                ("j" "Journal entry" plain (function org-journal-find-location)
+                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
+                :jump-to-captured t :immediate-finish t
+                )
+        )
+  )
 )
 
-(defun esfmt ()
-   "Format using eslint --fix"
-   (interactive)
-   (call-process-region (point-min) (point-max) "~/dotfiles/ansible/roles/react/files/esfmt" t t nil buffer-file-name)
-)
+;; (after! (:all org-agenda org-journal)
+;;   (setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
+;;   (add-to-list 'org-agenda-files org-journal-dir)
+;; )
+
+(setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
+(add-to-list 'org-agenda-files org-journal-dir)
 
 ;;; :editor evil
 (setq evil-split-window-below t

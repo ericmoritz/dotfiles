@@ -132,6 +132,7 @@
         +dragndrop       ; drag & drop files/images into org buffers
         +pretty
         +roam
+        +journal
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
