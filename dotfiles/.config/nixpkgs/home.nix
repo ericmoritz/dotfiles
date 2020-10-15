@@ -2,7 +2,7 @@
 let
   sources = import ./nix/sources.nix;
   unstable = import sources.nixpkgs-unstable { config.allowUnfree = true;};
-  doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
+  doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
      doomPrivateDir = ./doom.d;
   };
 

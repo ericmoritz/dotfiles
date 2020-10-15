@@ -1,18 +1,3 @@
-(setq +pretty-code-symbols
-(append +pretty-code-symbols
-        '(:equal     "≡"
-                :not-equal "≠"
-                :is        "≣"
-                :isnt      "≢"
-                :lte       "≤"
-                :gte       "≥"
-                :subseteq  "⊆"
-                :arrow "→"
-                :double-arrow "⇒"
-                :ellipsis "…"
-                :colon-eq "≔"
-                )))
-
 (after! python
   (set-ligatures! 'python-mode
     :equal      "=="
