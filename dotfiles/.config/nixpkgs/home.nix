@@ -46,6 +46,7 @@ in
 
     # fonts
     unstable.nanum-gothic-coding
+    unstable.symbola # emoji font for doom-emacs
     private.dankmono
     comic-relief
    
