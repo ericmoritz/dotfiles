@@ -23,7 +23,10 @@
  ;; Disable help mouse-overs for mode-line segments (i.e. :help-echo text).
  ;; They're generally unhelpful and only add confusing visual clutter.
  mode-line-default-help-echo nil
- show-help-function nil)
+ show-help-function nil
+
+ ns-use-native-fullscreen nil
+ )
 
 
 
@@ -78,12 +81,6 @@
                                 (when (eq major-mode 'go-mode) (format-all-buffer))))
   )
 
-;; (after! protobuf-mode
-;;   (rainbow-delimiters-mode-enable)
-;;   (add-hook 'before-save-hook (lambda ()
-;;                                 (when (eq major-mode 'protobuf-mode) (format-all-buffer))))
-;;   )
-
 (after! yaml-mode
   (rainbow-delimiters-mode-enable)
   )
@@ -117,40 +114,7 @@
 (setq
  org-use-property-inheritance t
  org-clock-clocked-in-display 'both
- org-agenda-custom-commands '(
-                              ;; Inbox
-                              ("i" "Inbox" ((tags-todo "inbox+SCHEDULED=\"\"|projects+SCHEDULED=\"\"" )))
-                              ("r" "Reading" ((tags-todo "reading" )))
-                              )
- org-columns-default-format "%60ITEM(Task) %PRIORITY %TODO %6Effort(Estim){:} %SCHEDULED %6CLOCKSUM(Clock) %TAGS %TICKET"
  )
-
-(defun org-journal-find-location ()
-  ;; Open today's journal, but specify a non-nil prefix argument in order to
-  ;; inhibit inserting the heading; org-capture will insert the heading.
-  (org-journal-new-entry t)
-  (org-narrow-to-subtree)
-  (goto-char (point-max)))
-
-(after! org-capture
-  (setq
-   org-capture-templates '(
-                           ("t" "TODO" entry (file+headline +org-capture-todo-file "Inbox") "* TODO %?")
-                           ("r" "Reading" entry (file+headline +org-capture-todo-file "Reading") "* TODO %?")
-                           ("s" "Someday" entry (file+headline +org-capture-todo-file "Someday") "* TODO %?")
-                           ("f" "Reference" entry (file+headline +org-capture-todo-file "Reference") "* %?")
-                           ("j" "Journal entry" plain (function org-journal-find-location)
-                               "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
-                               :jump-to-captured t :immediate-finish t)
-                          )
-   )
-  )
-
-(defun esfmt ()
-  "Format using eslint --fix"
-  (interactive)
-  (call-process-region (point-min) (point-max) "~/dotfiles/ansible/roles/react/files/esfmt" t t nil buffer-file-name)
-  )
 
 ;;; :editor evil
 (setq evil-split-window-below t
@@ -161,3 +125,5 @@
   )
 
 (setq vterm-shell "/bin/bash --login")
+
+(display-time-mode)
