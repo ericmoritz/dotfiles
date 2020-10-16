@@ -26,7 +26,7 @@
     "private-nix": {
         "ref": "main",
         "repo": "git@github.com:ericmoritz/private-nix.git",
-        "rev": "fc7fcec0c10399f48d4fa33622e5528180ad2bfa",
+        "rev": "25fe6d9398380196be06a46236e09ae70b23bd62",
         "type": "git"
     }
 }
