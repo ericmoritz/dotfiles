@@ -33,23 +33,23 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs; [
+  home.packages = with unstable; [
     # fun
-    unstable.spotify
-    unstable.discord
-    unstable.slack
-    unstable.minecraft
-    unstable.zulip
-    unstable.haskellPackages.neuron
-    unstable.sidequest
-    unstable.zoom-us
-    unstable.steam-run
-    unstable.steamPackages.steamcmd
-    unstable.steam
+    spotify
+    discord
+    slack
+    minecraft
+    zulip
+    haskellPackages.neuron
+    sidequest
+    zoom-us
+    steam-run
+    steamPackages.steamcmd
+    steam
 
     # fonts
-    unstable.nanum-gothic-coding
-    unstable.symbola # emoji font for doom-emacs
+    nanum-gothic-coding
+    symbola # emoji font for doom-emacs
     private.dankmono
     comic-relief
    
@@ -67,6 +67,7 @@ in
     evince
     audacity
     vscode
+    firefox
 
     # Tools needed by doom emacs's modules
     fd
@@ -83,20 +84,20 @@ in
     pass
     pinentry-curses
     graphviz
-    unstable.jsonnet
-    unstable.tanka
-    unstable.kubernetes
+    jsonnet
+    tanka
+    kubernetes
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
-    unstable.gore
+    gore
     godef
     gocode
     goimports
     gotests
     gomodifytags
     # golangci-lint
-    syncthing-gtk
+    pkgs.syncthing-gtk
 
     # Haskell tooling
     zlib.dev
