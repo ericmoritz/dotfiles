@@ -4,5 +4,6 @@
 (package! reason-mode)
 (package! mustache-mode)
 (package! org-web-tools)
-(package! ormolu)
+;; (package! ormolu)
 (package! dhall-mode :pin "ef4d33debe")
+(package! jsonnet-mode)

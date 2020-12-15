@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "vlaci",
         "repo": "nix-doom-emacs",
-        "rev": "9fe0402668dfb9d53352aeaec87d5e2a629260f5",
-        "sha256": "1vvblldz340k1i11n5pmkff3r43ibamxvi2czjb6w341p10jy93j",
+        "rev": "4cd7e15082bad25ff6b097f9bb419e50d32f621b",
+        "sha256": "1b81sarqh7lrwf0dj980q6zsxcv69pwhs2426v4fpd1wy98la5kl",
         "type": "tarball",
-        "url": "https://github.com/vlaci/nix-doom-emacs/archive/9fe0402668dfb9d53352aeaec87d5e2a629260f5.tar.gz",
+        "url": "https://github.com/vlaci/nix-doom-emacs/archive/4cd7e15082bad25ff6b097f9bb419e50d32f621b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-unstable": {
@@ -16,11 +16,11 @@
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "nixos",
-        "repo": "nixpkgs-channels",
-        "rev": "84d74ae9c9cbed73274b8e4e00be14688ffc93fe",
-        "sha256": "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v",
+        "repo": "nixpkgs",
+        "rev": "e9158eca70ae59e73fae23be5d13d3fa0cfc78b4",
+        "sha256": "0cnmvnvin9ixzl98fmlm3g17l6w95gifqfb3rfxs55c0wj2ddy53",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs-channels/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/e9158eca70ae59e73fae23be5d13d3fa0cfc78b4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "private-nix": {

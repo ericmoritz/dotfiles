@@ -43,6 +43,9 @@ in
     unstable.haskellPackages.neuron
     unstable.sidequest
     unstable.zoom-us
+    unstable.steam-run
+    unstable.steamPackages.steamcmd
+    unstable.steam
 
     # fonts
     unstable.nanum-gothic-coding
@@ -80,6 +83,9 @@ in
     pass
     pinentry-curses
     graphviz
+    unstable.jsonnet
+    unstable.tanka
+    unstable.kubernetes
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
@@ -101,6 +107,17 @@ in
     haskellPackages.ghcide
     haskellPackages.brittany
     ormolu
+
+    # Python tooling
+    python3
+    python-language-server
+    python38Packages.pyls-isort
+    python38Packages.pyls-black
+    python38Packages.pytest
+    python38Packages.nose
+    python38Packages.black
+    python38Packages.pyflakes
+    python38Packages.isort
 
     # misc
     xdg_utils

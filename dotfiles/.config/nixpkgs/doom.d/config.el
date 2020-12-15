@@ -89,8 +89,8 @@
  :localleader
  "f" #'ormolu-format-buffer)
 
-(after! haskell-mode
-        (add-hook 'haskell-mode-hook 'ormolu-format-on-save-mode))
+;; (after! haskell-mode
+;;         (add-hook 'haskell-mode-hook 'ormolu-format-on-save-mode))
 
 
 (set-irc-server! "chat.freenode.net"
