@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 let
   sources = import ./nix/sources.nix;
-  unstable = import sources.nixpkgs-unstable { config.allowUnfree = true;};
+  unstable = import sources.nixpkgs-unstable { 
+    config.allowUnfree = true;
+    # config.allowUnsupportedSystem = true;
+  };
   doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
      doomPrivateDir = ./doom.d;
   };
@@ -10,15 +13,22 @@ let
 
   # NPM Packages not in the NixOS repo
   adhocNode = pkgs.callPackage (import ./pkgs/node) {};
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+  mkPlatform =
+    if isDarwin
+    then (import ./platforms/darwin.nix)
+    else (import ./platforms/nixos.nix ) ;
+  platform = mkPlatform { inherit unstable pkgs; };
 in
 {
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "eric";
-  home.homeDirectory = "/home/eric";
+  home.homeDirectory = "/Users/eric";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -30,44 +40,23 @@ in
   # changes in each release.
   home.stateVersion = "20.09";
 
-
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with unstable; [
-    # fun
-    spotify
-    discord
     slack
-    minecraft
-    zulip
-    haskellPackages.neuron
-    sidequest
-    zoom-us
-    steam-run
-    steamPackages.steamcmd
-    steam
 
     # fonts
     nanum-gothic-coding
     symbola # emoji font for doom-emacs
     private.dankmono
     comic-relief
-   
+
     # nix stuff
     niv
-    direnv
-   
+
     # productivity tools
     doom-emacs
-    obs-studio
     ripgrep
-    google-chrome
-    signal-desktop
     proselint
-    evince
-    audacity
     vscode
-    firefox
 
     # Tools needed by doom emacs's modules
     fd
@@ -96,8 +85,6 @@ in
     goimports
     gotests
     gomodifytags
-    # golangci-lint
-    pkgs.syncthing-gtk
 
     # Haskell tooling
     zlib.dev
@@ -111,9 +98,6 @@ in
 
     # Python tooling
     python3
-    python-language-server
-    python38Packages.pyls-isort
-    python38Packages.pyls-black
     python38Packages.pytest
     python38Packages.nose
     python38Packages.black
@@ -123,7 +107,7 @@ in
     # misc
     xdg_utils
     sqlite
-  ];
+  ] ++ platform.packages;
 
   programs = {
     go = rec {
@@ -141,10 +125,10 @@ in
 
   programs.bash.enable = true;
   programs.bash.initExtra = ''
-    eval "$(direnv hook bash)"
+    # eval "$(direnv hook bash)"
     PATH=$PATH:~/.npm-global/bin
   '';
-  
+
   home.file = {
     ".emacs.d/init.el".text = ''
       (load "default.el")
@@ -162,21 +146,20 @@ in
 
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    associations.added = {
-      "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
-    };
-    defaultApplications = {
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/about" = [ "firefox.desktop" ];
-      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-    };
-  };
+#   xdg.mimeApps = {
+#     enable = true;
+#     associations.added = {
+#       "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
+#     };
+#     defaultApplications = {
+#       "text/html" = [ "firefox.desktop" ];
+#       "x-scheme-handler/http" = [ "firefox.desktop" ];
+#       "x-scheme-handler/https" = [ "firefox.desktop" ];
+#       "x-scheme-handler/about" = [ "firefox.desktop" ];
+#       "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+#     };
+#   };
 
-  services.lorri.enable = true;
+  # fonts.fontconfig.enable = true;
 
-  fonts.fontconfig.enable = true;
 }

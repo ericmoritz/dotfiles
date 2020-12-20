@@ -3,3 +3,4 @@
 *.retry
 /.etc/
 /ansible/kubeconfig
+/dotfiles/.config/git/
