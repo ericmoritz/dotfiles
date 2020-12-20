@@ -19,6 +19,7 @@ let
     then (import ./platforms/darwin.nix)
     else (import ./platforms/nixos.nix ) ;
   platform = mkPlatform { inherit unstable pkgs; };
+  machine = (import ./machine.nix) {};
 in
 {
 
@@ -27,8 +28,8 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "eric";
-  home.homeDirectory = "/Users/eric";
+  home.username = machine.username;
+  home.homeDirectory = machine.homeDirectory;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -116,11 +117,7 @@ in
       goBin = "${goPath}/bin";
     };
 
-    git = {
-      enable = true;
-      userName = "Eric Moritz";
-      userEmail = "eric.moritz@gmail.com";
-    };
+    git = machine.git;
   };
 
   programs.bash.enable = true;
