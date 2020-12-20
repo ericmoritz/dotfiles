@@ -1,6 +1,6 @@
 {unstable, pkgs, ...}:
 {
-  home.packages = with unstable; [
+  packages = with unstable; [
     spotify
     discord
     minecraft
@@ -11,7 +11,6 @@
     steamPackages.steamcmd
     steam
 
-    productivity tools
     obs-studio
     google-chrome
     signal-desktop
