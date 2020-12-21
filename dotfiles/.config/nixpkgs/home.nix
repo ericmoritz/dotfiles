@@ -1,24 +1,29 @@
 { config, pkgs, ... }:
 let
+  # Import sources
   sources = import ./nix/sources.nix;
   unstable = import sources.nixpkgs-unstable { 
     config.allowUnfree = true;
     # config.allowUnsupportedSystem = true;
   };
+  private = import sources.private-nix { };
+  personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
+
+  # Configure doom-emacs
   doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
      doomPrivateDir = ./doom.d;
   };
 
-  private = import sources.private-nix { };
-
   # NPM Packages not in the NixOS repo
   adhocNode = pkgs.callPackage (import ./pkgs/node) {};
+
+  # Import the platform and machine specific records
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
   mkPlatform =
     if isDarwin
     then (import ./platforms/darwin.nix)
     else (import ./platforms/nixos.nix ) ;
-  platform = mkPlatform { inherit unstable pkgs; };
+  platform = mkPlatform { inherit unstable pkgs personal; };
   machine = (import ./machine.nix) {};
 in
 {
@@ -43,6 +48,7 @@ in
 
   home.packages = with unstable; [
     slack
+    personal.jfrog-cli
 
     # fonts
     nanum-gothic-coding
@@ -58,7 +64,6 @@ in
     ripgrep
     proselint
     vscode
-    keepassxc
 
     # Tools needed by doom emacs's modules
     fd
@@ -78,6 +83,9 @@ in
     jsonnet
     tanka
     kubernetes
+    kubernetes-helm
+    helmfile
+    sops
 
     # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
     gotools # for gopls Go's LSP server
@@ -87,6 +95,7 @@ in
     goimports
     gotests
     gomodifytags
+    golangci-lint
 
     # Haskell tooling
     zlib.dev
@@ -118,7 +127,18 @@ in
       goBin = "${goPath}/bin";
     };
 
-    git = machine.git;
+    git = machine.git // {
+      extraConfig = {
+        url = {
+          "git@github.com:" = {
+            insteadOf = "https://github.com/";
+          };
+        };
+        pull = {
+          rebase = true;
+        };
+      };
+    };
   };
 
   programs.bash.enable = true;
