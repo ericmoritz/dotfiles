@@ -24,5 +24,6 @@
     python-language-server
     python38Packages.pyls-isort
     python38Packages.pyls-black
+    element-desktop
   ];
 }
