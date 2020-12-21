@@ -1,4 +1,7 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
+
 let
   # Import sources
   sources = import ./nix/sources.nix;
@@ -26,6 +29,7 @@ let
   platform = mkPlatform { inherit unstable pkgs personal; };
   machine = (import ./machine.nix) {};
 in
+mkMerge [
 {
 
   # Let Home Manager install and manage itself.
@@ -158,18 +162,25 @@ in
       (load "default.el")
     '';
 
-    # ".local/share/applications/org-protocol.desktop".text = ''
-    #   [Desktop Entry]
-    #   Name=org-protocol
-    #   Exec=emacsclient %u
-    #   Type=Application
-    #   Terminal=false
-    #   Categories=System;
-    #   MimeType=x-scheme-handler/org-protocol;
-    # '';
-
     ".zprofile".text = ''
     . /Users/eric/.nix-profile/etc/profile.d/nix.sh
+    '';
+  };
+
+
+  fonts.fontconfig.enable = true;
+
+}
+(mkIf (!isDarwin) {
+  home.file = {
+    ".local/share/applications/org-protocol.desktop".text = ''
+      [Desktop Entry]
+      Name=org-protocol
+      Exec=emacsclient %u
+      Type=Application
+      Terminal=false
+      Categories=System;
+      MimeType=x-scheme-handler/org-protocol;
     '';
   };
 
@@ -187,6 +198,5 @@ in
   #   };
   # };
 
-  fonts.fontconfig.enable = true;
-
-}
+})
+]
