@@ -1,4 +1,9 @@
 {...}:
+let
+  personal = (import ../pkgs/personal.nix) {};
+in
 {
-  packages = [];
+  packages = [
+    personal.jfrog-cli
+  ];
 }

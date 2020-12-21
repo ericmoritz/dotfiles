@@ -48,7 +48,7 @@ in
 
   home.packages = with unstable; [
     slack
-    personal.jfrog-cli
+    aws-iam-authenticator
 
     # fonts
     nanum-gothic-coding
