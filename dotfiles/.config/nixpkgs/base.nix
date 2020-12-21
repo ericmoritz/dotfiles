@@ -104,10 +104,12 @@ in
       python38Packages.black
       python38Packages.pyflakes
       python38Packages.isort
+      python38Packages.pygments
 
       # misc
       xdg_utils
       sqlite
+      thefuck
     ];
 
     programs = {
@@ -138,6 +140,12 @@ in
         # gnu-getopt overrides the system getopt
         export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
         '';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "sudo" "emacs" "helm" "kubectl" "thefuck"
+                    "golang" ];
+        theme = "nanotech";
+      };
     };
     home.sessionVariables = {
       CLICOLOR=1;
