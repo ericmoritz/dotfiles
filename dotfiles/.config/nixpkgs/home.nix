@@ -58,6 +58,7 @@ in
     ripgrep
     proselint
     vscode
+    keepassxc
 
     # Tools needed by doom emacs's modules
     fd
@@ -124,6 +125,7 @@ in
   programs.bash.initExtra = ''
     # eval "$(direnv hook bash)"
     PATH=$PATH:~/.npm-global/bin
+
   '';
 
   home.file = {
@@ -141,6 +143,9 @@ in
       MimeType=x-scheme-handler/org-protocol;
     '';
 
+    ".zprofile".text = ''
+    . /Users/eric/.nix-profile/etc/profile.d/nix.sh
+    '';
   };
 
 #   xdg.mimeApps = {
