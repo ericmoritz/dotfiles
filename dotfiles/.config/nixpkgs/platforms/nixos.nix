@@ -1,6 +1,7 @@
 {unstable, pkgs, ...}:
 {
   packages = with unstable; [
+    slack
     spotify
     discord
     minecraft

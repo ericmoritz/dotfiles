@@ -47,7 +47,6 @@ in
   home.stateVersion = "20.09";
 
   home.packages = with unstable; [
-    slack
     aws-iam-authenticator
 
     # fonts
@@ -84,6 +83,7 @@ in
     tanka
     kubernetes
     kubernetes-helm
+    kubectx
     helmfile
     sops
 
@@ -144,7 +144,9 @@ in
   programs.zsh = {
     enable = true;
     initExtra = ''
-      export KUBECONFIG=~/.kube/prod-config:~/.kube/staging-config:~/.kube/config;
+      # Installed via `brew install gnu-getopt` this is required so the brew's
+      # gnu-getopt overrides the system getopt
+      export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
       '';
   };
   home.sessionVariables = {
