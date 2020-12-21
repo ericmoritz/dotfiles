@@ -7,3 +7,4 @@
 /dotfiles/.config/nixpkgs/machine.nix
 /dotfiles/.config/fontconfig/
 /dotfiles/.config/nixpkgs/home.nix
+/dotfiles/.config/thefuck/

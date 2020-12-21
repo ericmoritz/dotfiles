@@ -110,6 +110,7 @@ in
       xdg_utils
       sqlite
       thefuck
+      fortune
     ];
 
     programs = {
@@ -143,8 +144,9 @@ in
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "sudo" "emacs" "helm" "kubectl" "thefuck"
-                    "golang" ];
-        theme = "nanotech";
+                    "golang" "themes" "bgnotify" ];
+        # theme = "nanotech";
+        theme = "ys";
       };
     };
     home.sessionVariables = {
