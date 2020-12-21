@@ -141,10 +141,15 @@ in
     };
   };
 
-  programs.zsh.enable = true;
-  programs.zsh.initExtra = ''
-  export KUBECONFIG=~/.kube/prod-config:~/.kube/staging-config:~/.kube/config;
-  '';
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      export KUBECONFIG=~/.kube/prod-config:~/.kube/staging-config:~/.kube/config;
+      '';
+  };
+  home.sessionVariables = {
+    CLICOLOR=1;
+  };
 
   home.file = {
     ".emacs.d/init.el".text = ''
@@ -180,6 +185,6 @@ in
   #   };
   # };
 
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
 }

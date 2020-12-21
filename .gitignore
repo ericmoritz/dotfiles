@@ -5,3 +5,4 @@
 /ansible/kubeconfig
 /dotfiles/.config/git/
 /dotfiles/.config/nixpkgs/machine.nix
+/dotfiles/.config/fontconfig/
