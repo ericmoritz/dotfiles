@@ -20,9 +20,6 @@ let
   # NPM Packages not in the NixOS repo
   adhocNode = pkgs.callPackage (import ./pkgs/node) {};
 
-  # Import the platform and machine specific records
-  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
-  machine = (import ./machine.nix) {};
 in
 {
   config = {

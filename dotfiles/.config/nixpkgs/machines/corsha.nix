@@ -1,6 +1,10 @@
 {...}:
 
 {
+  imports = [
+    ../platforms/darwin.nix
+  ];
+
   config = {
     home.username = "eric";
     home.homeDirectory = "/Users/eric";
