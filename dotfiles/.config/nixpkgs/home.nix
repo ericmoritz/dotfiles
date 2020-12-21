@@ -141,11 +141,9 @@ in
     };
   };
 
-  programs.bash.enable = true;
-  programs.bash.initExtra = ''
-    # eval "$(direnv hook bash)"
-    PATH=$PATH:~/.npm-global/bin
-
+  programs.zsh.enable = true;
+  programs.zsh.initExtra = ''
+  export KUBECONFIG=~/.kube/prod-config:~/.kube/staging-config:~/.kube/config;
   '';
 
   home.file = {
@@ -153,34 +151,34 @@ in
       (load "default.el")
     '';
 
-    ".local/share/applications/org-protocol.desktop".text = ''
-      [Desktop Entry]
-      Name=org-protocol
-      Exec=emacsclient %u
-      Type=Application
-      Terminal=false
-      Categories=System;
-      MimeType=x-scheme-handler/org-protocol;
-    '';
+    # ".local/share/applications/org-protocol.desktop".text = ''
+    #   [Desktop Entry]
+    #   Name=org-protocol
+    #   Exec=emacsclient %u
+    #   Type=Application
+    #   Terminal=false
+    #   Categories=System;
+    #   MimeType=x-scheme-handler/org-protocol;
+    # '';
 
     ".zprofile".text = ''
     . /Users/eric/.nix-profile/etc/profile.d/nix.sh
     '';
   };
 
-#   xdg.mimeApps = {
-#     enable = true;
-#     associations.added = {
-#       "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
-#     };
-#     defaultApplications = {
-#       "text/html" = [ "firefox.desktop" ];
-#       "x-scheme-handler/http" = [ "firefox.desktop" ];
-#       "x-scheme-handler/https" = [ "firefox.desktop" ];
-#       "x-scheme-handler/about" = [ "firefox.desktop" ];
-#       "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-#     };
-#   };
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   associations.added = {
+  #     "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
+  #   };
+  #   defaultApplications = {
+  #     "text/html" = [ "firefox.desktop" ];
+  #     "x-scheme-handler/http" = [ "firefox.desktop" ];
+  #     "x-scheme-handler/https" = [ "firefox.desktop" ];
+  #     "x-scheme-handler/about" = [ "firefox.desktop" ];
+  #     "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+  #   };
+  # };
 
   # fonts.fontconfig.enable = true;
 
