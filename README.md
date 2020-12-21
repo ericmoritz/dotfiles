@@ -11,7 +11,13 @@ These are my dotfiles and home-manager configuration
 
 ``` sh
 nix-shell -p stow --run 'stow -t ~ dotfiles'
+cp dotfiles/.config/nixpkgs/home-sample.nix dotfiles/.config/nixpkgs/home.nix 
 home-manager switch
+# Update home.nix to suit your needs
+$EDITOR dotfiles/.config/nixpkgs/home.nix 
+# Switch to new configuration
+home-manager switch
+
 ```
 
 ## TODO
