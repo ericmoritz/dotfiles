@@ -21,7 +21,7 @@ in
 
             obs-studio
             google-chrome
-            signal-desktop
+            pkgs.signal-desktop
             evince
             audacity
             firefox
