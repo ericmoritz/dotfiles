@@ -145,8 +145,8 @@ in
         enable = true;
         plugins = [ "git" "sudo" "emacs" "helm" "kubectl" "thefuck"
                     "golang" "themes" "bgnotify" ];
-        # theme = "nanotech";
-        theme = "ys";
+        theme = "nanotech";
+        # theme = "ys";
       };
     };
     home.sessionVariables = {
