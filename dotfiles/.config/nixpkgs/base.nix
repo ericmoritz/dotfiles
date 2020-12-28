@@ -109,8 +109,7 @@ in
       # misc
       xdg_utils
       sqlite
-      thefuck
-      fortune
+      unixtools.watch
     ];
 
     programs = {
@@ -143,14 +142,14 @@ in
         '';
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "sudo" "emacs" "helm" "kubectl" "thefuck"
-                    "golang" "themes" "bgnotify" ];
+        plugins = [ "git" "sudo" "helm" "kubectl" "golang" "themes" "bgnotify" ];
         theme = "nanotech";
         # theme = "ys";
       };
     };
     home.sessionVariables = {
       CLICOLOR=1;
+      EDITOR="emacsclient";
     };
 
     home.file = {
