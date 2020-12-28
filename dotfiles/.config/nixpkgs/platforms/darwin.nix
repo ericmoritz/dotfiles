@@ -12,5 +12,10 @@ in
       personal.jfrog-cli
       unstable.terminal-notifier
     ];
+    programs.zsh = {
+      shellAliases = {
+        flushdns = "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder";
+      };
+    };
   };
 }
