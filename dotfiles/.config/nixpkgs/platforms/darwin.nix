@@ -11,6 +11,7 @@ in
     home.packages = [
       personal.jfrog-cli
       unstable.terminal-notifier
+      unstable.nodejs-14_x
     ];
     programs.zsh = {
       shellAliases = {

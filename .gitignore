@@ -8,3 +8,4 @@
 /dotfiles/.config/fontconfig/
 /dotfiles/.config/nixpkgs/home.nix
 /dotfiles/.config/thefuck/
+/dotfiles/.config/configstore/
