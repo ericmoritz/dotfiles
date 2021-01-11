@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 
@@ -9,8 +9,10 @@ let
     config.allowUnfree = true;
     # config.allowUnsupportedSystem = true;
   };
+  pkgs = unstable;
   private = import sources.private-nix { };
   personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
+  goplsPersonal = unstable.callPackage (import ./pkgs/gopls) {  };
 
   # Configure doom-emacs
   doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
@@ -78,7 +80,7 @@ in
       sops
 
       # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
-      gotools # for gopls Go's LSP server
+      goplsPersonal
       gore
       godef
       gocode
