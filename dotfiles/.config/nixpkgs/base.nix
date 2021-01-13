@@ -12,18 +12,17 @@ let
   pkgs = unstable;
   private = import sources.private-nix { };
   personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
-  goplsPersonal = unstable.callPackage (import ./pkgs/gopls) {  };
+  goplsPersonal = unstable.callPackage (import ./pkgs/gopls) { };
 
   # Configure doom-emacs
   doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
-     doomPrivateDir = ./doom.d;
+    doomPrivateDir = ./doom.d;
   };
 
   # NPM Packages not in the NixOS repo
-  adhocNode = pkgs.callPackage (import ./pkgs/node) {};
+  adhocNode = pkgs.callPackage (import ./pkgs/node) { };
 
-in
-{
+in {
   config = {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
@@ -58,7 +57,7 @@ in
 
       # Tools needed by doom emacs's modules
       fd
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science]))
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       nixfmt
       shellcheck
       proselint
@@ -123,14 +122,8 @@ in
 
       git = {
         extraConfig = {
-          url = {
-            "git@github.com:" = {
-              insteadOf = "https://github.com/";
-            };
-          };
-          pull = {
-            rebase = true;
-          };
+          url = { "git@github.com:" = { insteadOf = "https://github.com/"; }; };
+          pull = { rebase = true; };
         };
       };
     };
@@ -141,17 +134,21 @@ in
         # Installed via `brew install gnu-getopt` this is required so the brew's
         # gnu-getopt overrides the system getopt
         export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-        '';
+      '';
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "sudo" "helm" "kubectl" "golang" "themes" "bgnotify" ];
-        theme = "nanotech";
-        # theme = "ys";
+        plugins =
+          [ "git" "sudo" "helm" "kubectl" "golang" "themes" "bgnotify" ];
+        # theme = "nanotech";
+        # theme = "mlh";
+        theme = "refined";
+        # theme = "rkj-repos";
+        # theme = "essembeh";
       };
     };
     home.sessionVariables = {
-      CLICOLOR=1;
-      EDITOR="emacsclient";
+      CLICOLOR = 1;
+      EDITOR = "emacsclient";
     };
 
     home.file = {
@@ -160,10 +157,9 @@ in
       '';
 
       ".zprofile".text = ''
-      . /Users/eric/.nix-profile/etc/profile.d/nix.sh
+        . /Users/eric/.nix-profile/etc/profile.d/nix.sh
       '';
     };
-
 
     fonts.fontconfig.enable = true;
   };
