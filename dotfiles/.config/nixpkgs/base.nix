@@ -115,6 +115,7 @@ in {
       xdg_utils
       sqlite
       unixtools.watch
+      wrk
     ];
 
     programs = {
@@ -139,6 +140,9 @@ in {
         # gnu-getopt overrides the system getopt
         export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
       '';
+      shellAliases = {
+        k8s_secrets = "jq '.data | with_entries(.value |= (. | @base64d))'";
+      };
       oh-my-zsh = {
         enable = true;
         plugins =

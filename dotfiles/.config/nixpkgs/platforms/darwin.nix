@@ -1,21 +1,24 @@
-{...}:
+{ ... }:
 let
-  personal = (import ../pkgs/personal.nix) {};
+  personal = (import ../pkgs/personal.nix) { };
   sources = import ../nix/sources.nix;
-  unstable = import sources.nixpkgs-unstable {
-    config.allowUnfree = true;
-  };
-in
-{
+  unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
+in {
   config = {
     home.packages = [
       personal.jfrog-cli
       unstable.terminal-notifier
       unstable.nodejs-14_x
+      unstable.vagrant
+      unstable.azure-cli
     ];
+
+    home.sessionVariables = { GOPRIVATE = "github.com/corshatech/*"; };
+
     programs.zsh = {
       shellAliases = {
-        flushdns = "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder";
+        flushdns =
+          "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder";
       };
     };
   };
