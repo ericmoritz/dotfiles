@@ -48,7 +48,9 @@
 (add-to-list 'auto-mode-alist '("\\.tsx$" . typescript-mode))
 
 (after! go-mode
-  (rainbow-delimiters-mode-enable))
+  (rainbow-delimiters-mode-enable)
+)
+(setq-hook! 'go-mode-hook +format-with-lsp nil)
 
 (after! yaml-mode
   (rainbow-delimiters-mode-enable))
