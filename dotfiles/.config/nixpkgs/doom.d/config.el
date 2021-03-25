@@ -98,3 +98,11 @@
     :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
     :channels ("#haskell-beginners" "#haskell" "#nixos" "##rust")))
 
+
+(after! 'lsp-mode  ; try this or similar
+  (lsp-register-custom-settings
+   '(
+        ("pyls.plugins.pyls_mypy.enabled" t t)
+        ("pyls.plugins.pyls_mypy.live_mode" t t)
+    )
+))

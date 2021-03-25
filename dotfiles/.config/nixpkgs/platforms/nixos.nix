@@ -31,6 +31,7 @@ in {
       element-desktop
       gimp
       inkscape
+      teams
     ];
     home.file = {
       ".local/share/applications/org-protocol.desktop".text = ''

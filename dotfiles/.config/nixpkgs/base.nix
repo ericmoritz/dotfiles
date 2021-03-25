@@ -106,6 +106,10 @@ in {
       python38Packages.pyflakes
       python38Packages.isort
       python38Packages.pygments
+      python38Packages.python-language-server
+      python38Packages.mypy
+      python38Packages.pyls-mypy
+      python38Packages.pyls-black
 
       # misc
       xdg_utils
