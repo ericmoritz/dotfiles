@@ -106,9 +106,9 @@ in {
       python38Packages.isort
       python38Packages.pygments
       python38Packages.mypy
-      # python38Packages.python-language-server
-      # python38Packages.pyls-mypy
-      # python38Packages.pyls-black
+      python38Packages.python-language-server
+      python38Packages.pyls-mypy
+      python38Packages.pyls-black
 
       # misc
       xdg_utils
