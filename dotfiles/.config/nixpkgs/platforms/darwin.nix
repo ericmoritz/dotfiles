@@ -11,7 +11,7 @@ in {
       unstable.nodejs-14_x
       unstable.vagrant
       unstable.azure-cli
-      unstable.terraform_0_14
+      unstable.terraform_0_15
       unstable.awscli
     ];
 
