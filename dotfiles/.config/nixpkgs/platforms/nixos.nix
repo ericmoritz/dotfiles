@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ ... }:
 let
   sources = import ../nix/sources.nix;
-  unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
+  pkgs = import sources.nixpkgs { config.allowUnfree = true; };
 in {
   config = {
-    home.packages = with unstable; [
+    home.packages = with pkgs; [
       slack
       spotify
       discord
@@ -18,12 +18,12 @@ in {
 
       obs-studio
       google-chrome
-      pkgs.signal-desktop
+      signal-desktop
       evince
       audacity
       firefox
 
-      pkgs.syncthing-gtk
+      syncthing-gtk
 
       python-language-server
       python38Packages.pyls-isort

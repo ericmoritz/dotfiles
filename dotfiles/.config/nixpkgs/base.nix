@@ -5,17 +5,16 @@ with lib;
 let
   # Import sources
   sources = import ./nix/sources.nix;
-  unstable = import sources.nixpkgs-unstable {
+  pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
     # config.allowUnsupportedSystem = true;
   };
-  pkgs = unstable;
   private = import sources.private-nix { };
   personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
-  goplsPersonal = unstable.callPackage (import ./pkgs/gopls) { };
+  goplsPersonal = pkgs.callPackage (import ./pkgs/gopls) { };
 
   # Configure doom-emacs
-  doom-emacs = unstable.callPackage (import sources.nix-doom-emacs) {
+  doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
     doomPrivateDir = ./doom.d;
   };
 
@@ -37,7 +36,7 @@ in {
     # changes in each release.
     home.stateVersion = "20.09";
 
-    home.packages = with unstable; [
+    home.packages = with pkgs; [
       aws-iam-authenticator
 
       # fonts
@@ -106,10 +105,10 @@ in {
       python38Packages.pyflakes
       python38Packages.isort
       python38Packages.pygments
-      python38Packages.python-language-server
       python38Packages.mypy
-      python38Packages.pyls-mypy
-      python38Packages.pyls-black
+      # python38Packages.python-language-server
+      # python38Packages.pyls-mypy
+      # python38Packages.pyls-black
 
       # misc
       xdg_utils

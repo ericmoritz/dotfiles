@@ -2,7 +2,7 @@
 let
   personal = (import ../pkgs/personal.nix) { };
   sources = import ../nix/sources.nix;
-  unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
+  unstable = import sources.nixpkgs { config.allowUnfree = true; };
 in {
   config = {
     home.packages = [
@@ -11,6 +11,8 @@ in {
       unstable.nodejs-14_x
       unstable.vagrant
       unstable.azure-cli
+      unstable.terraform_0_14
+      unstable.awscli
     ];
 
     home.sessionVariables = { GOPRIVATE = "github.com/corshatech/*"; };
