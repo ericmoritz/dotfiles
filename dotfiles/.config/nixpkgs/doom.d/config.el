@@ -21,7 +21,7 @@
  mode-line-default-help-echo nil
  show-help-function nil
 
- doom-theme 'doom-fairy-floss
+ doom-theme 'doom-one
  doom-font (font-spec :family "JuliaMono" :size 14)
  doom-variable-pitch-font (font-spec :family "Times" :size 16)
 
