@@ -44,6 +44,7 @@ in {
       symbola # emoji font for doom-emacs
       private.dankmono
       comic-relief
+      julia-mono
 
       # nix stuff
       niv
