@@ -7,22 +7,20 @@ let
   sources = import ./nix/sources.nix;
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
-    # config.allowUnsupportedSystem = true;
   };
+
+  # We have to pin 3.6.1 of sops at work
   sops_pkgs = import sources.sops {
     config.allowUnfree = true;
-    # config.allowUnsupportedSystem = true;
   };
+
+  # private packages like the non-free Dank Mono font
   private = import sources.private-nix { };
-  personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
 
   # Configure doom-emacs
   doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
     doomPrivateDir = ./doom.d;
   };
-
-  # NPM Packages not in the NixOS repo
-  adhocNode = pkgs.callPackage (import ./pkgs/node) { };
 
 in {
   config = {
@@ -67,7 +65,7 @@ in {
       pandoc
       mdl
       nodePackages.js-beautify
-      adhocNode.stylelint
+      nodePackages.stylelint
       gnutls
       gnupg
       pass
