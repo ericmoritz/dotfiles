@@ -28,5 +28,17 @@
         "repo": "git@github.com:ericmoritz/private-nix.git",
         "rev": "25fe6d9398380196be06a46236e09ae70b23bd62",
         "type": "git"
+    },
+    "sops": {
+        "branch": "master",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "219ee8d09178cc4f4d63f58ecad539f09b4f61e8",
+        "sha256": "1h2ha8h2h2n7zpfksjr1iplxxxzn9fsk2fm3xxwkww9b22bxmy1q",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/219ee8d09178cc4f4d63f58ecad539f09b4f61e8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

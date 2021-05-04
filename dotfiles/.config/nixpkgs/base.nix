@@ -9,9 +9,12 @@ let
     config.allowUnfree = true;
     # config.allowUnsupportedSystem = true;
   };
+  sops_pkgs = import sources.sops {
+    config.allowUnfree = true;
+    # config.allowUnsupportedSystem = true;
+  };
   private = import sources.private-nix { };
   personal = pkgs.callPackage (import ./pkgs/personal.nix) { };
-  goplsPersonal = pkgs.callPackage (import ./pkgs/gopls) { };
 
   # Configure doom-emacs
   doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
@@ -76,10 +79,10 @@ in {
       kubernetes-helm
       kubectx
       helmfile
-      sops
+      sops_pkgs.sops
 
       # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
-      goplsPersonal
+      gopls
       gore
       godef
       gocode
