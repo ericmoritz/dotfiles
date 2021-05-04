@@ -2,17 +2,17 @@
 let
   personal = (import ../pkgs/personal.nix) { };
   sources = import ../nix/sources.nix;
-  unstable = import sources.nixpkgs { config.allowUnfree = true; };
+  pkgs = import sources.nixpkgs { config.allowUnfree = true; };
 in {
   config = {
-    home.packages = [
+    home.packages = with pkgs; [
       personal.jfrog-cli
-      unstable.terminal-notifier
-      unstable.nodejs-14_x
-      unstable.vagrant
-      unstable.azure-cli
-      unstable.terraform_0_15
-      unstable.awscli
+      terminal-notifier
+      nodejs-14_x
+      vagrant
+      azure-cli
+      terraform_0_15
+      awscli
     ];
 
     home.sessionVariables = {
