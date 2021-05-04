@@ -121,6 +121,7 @@ in {
     programs = {
       go = rec {
         enable = true;
+        package = pkgs.go_1_16;
         goPath = "go";
         goBin = "${goPath}/bin";
       };
@@ -164,9 +165,6 @@ in {
         (load "default.el")
       '';
 
-      ".zprofile".text = ''
-        . /Users/eric/.nix-profile/etc/profile.d/nix.sh
-      '';
     };
 
     fonts.fontconfig.enable = true;

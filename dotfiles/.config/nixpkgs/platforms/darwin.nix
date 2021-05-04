@@ -15,7 +15,10 @@ in {
       unstable.awscli
     ];
 
-    home.sessionVariables = { GOPRIVATE = "github.com/corshatech/*"; };
+    home.sessionVariables = {
+      GOPRIVATE = "github.com/corshatech/*";
+      NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
+    };
 
     programs.zsh = {
       shellAliases = {
