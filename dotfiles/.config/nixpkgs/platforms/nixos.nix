@@ -23,11 +23,11 @@ in {
       audacity
       firefox
 
-      syncthing-gtk
+      openscad
 
-      python-language-server
-      python38Packages.pyls-isort
-      python38Packages.pyls-black
+      # broken
+      # syncthing-gtk
+
       element-desktop
       gimp
       inkscape

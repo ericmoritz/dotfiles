@@ -112,6 +112,7 @@ in {
       python38Packages.python-language-server
       python38Packages.pyls-mypy
       python38Packages.pyls-black
+      python38Packages.pyls-isort
 
       # misc
       xdg_utils
