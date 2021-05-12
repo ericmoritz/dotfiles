@@ -50,11 +50,12 @@ in {
       # nix stuff
       niv
 
-      # productivity tools
+      # tools
       doom-emacs
       ripgrep
       proselint
       vscode
+      gitAndTools.hub
 
       # Tools needed by doom emacs's modules
       fd
