@@ -61,6 +61,7 @@ in {
     };
 
     fonts.fontconfig.enable = true;
+    services.syncthing.enable = true;
   };
 
 }
