@@ -1,4 +1,16 @@
 {
+    "golangci-lint": {
+        "branch": "master",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "82185d395328be56744042dafb5b0dffb3687a07",
+        "sha256": "03w2yz6cdh3x8nfc2kjrfas5lqsy8kjpnmbzz4x3yas14zsd0fa3",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/82185d395328be56744042dafb5b0dffb3687a07.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nix-doom-emacs": {
         "branch": "master",
         "description": "doom-emacs packaged for Nix",

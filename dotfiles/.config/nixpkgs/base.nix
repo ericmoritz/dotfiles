@@ -14,6 +14,9 @@ let
     config.allowUnfree = true;
   };
 
+  # We have to pin 1.38.0 of golangci-lint at work
+  golangci-lint = import sources.golangci-lint {};
+
   # private packages like the non-free Dank Mono font
   private = import sources.private-nix { };
 
@@ -56,6 +59,7 @@ in {
       proselint
       vscode
       gitAndTools.hub
+      grpcurl
 
       # Tools needed by doom emacs's modules
       fd
@@ -88,7 +92,7 @@ in {
       goimports
       gotests
       gomodifytags
-      golangci-lint
+      golangci-lint.golangci-lint
 
       # Haskell tooling
       zlib.dev

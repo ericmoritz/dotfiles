@@ -49,7 +49,7 @@
 
 (after! go-mode
   (rainbow-delimiters-mode-enable)
-)
+  )
 (setq-hook! 'go-mode-hook +format-with-lsp nil)
 
 (after! yaml-mode
@@ -92,19 +92,18 @@
 ;;         (add-hook 'haskell-mode-hook 'ormolu-format-on-save-mode))
 
 
-(set-irc-server! "chat.freenode.net"
-  `(:tls t
-    :port 6697
-    :nick "ericmoritz"
-    :sasl-username "ericmoritz"
-    :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
-    :channels ("#haskell-beginners" "#haskell" "#nixos" "##rust")))
-
-
 (after! 'lsp-mode  ; try this or similar
   (lsp-register-custom-settings
    '(
-        ("pyls.plugins.pyls_mypy.enabled" t t)
-        ("pyls.plugins.pyls_mypy.live_mode" t t)
-    )
-))
+     ("pyls.plugins.pyls_mypy.enabled" t t)
+     ("pyls.plugins.pyls_mypy.live_mode" t t)
+     )
+   ))
+
+(defun branch ()
+  "Return the current branch for the current file."
+  (let*
+      ((backend (vc-backend buffer-file-name)))
+    (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2)))
+  )
+
