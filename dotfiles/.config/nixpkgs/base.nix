@@ -102,6 +102,7 @@ in {
       ghc
       haskellPackages.ghcide
       haskellPackages.brittany
+      haskellPackages.record-dot-preprocessor
       ormolu
 
       # Python tooling
