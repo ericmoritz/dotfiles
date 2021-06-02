@@ -23,7 +23,6 @@
 
  doom-theme 'doom-one
  doom-font (font-spec :family "JuliaMono" :size 14)
- doom-variable-pitch-font (font-spec :family "Times" :size 16)
 
  doom-modeline-major-mode-icon t
  doom-modeline-persp-name t
