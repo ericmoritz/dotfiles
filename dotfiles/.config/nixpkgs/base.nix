@@ -9,14 +9,6 @@ let
     config.allowUnfree = true;
   };
 
-  # We have to pin 3.6.1 of sops at work
-  sops_pkgs = import sources.sops {
-    config.allowUnfree = true;
-  };
-
-  # We have to pin 1.38.0 of golangci-lint at work
-  golangci-lint = import sources.golangci-lint {};
-
   # private packages like the non-free Dank Mono font
   private = import sources.private-nix { };
 
@@ -24,6 +16,8 @@ let
   doom-emacs = pkgs.callPackage (import sources.nix-doom-emacs) {
     doomPrivateDir = ./doom.d;
   };
+
+  pins = import ./nix/pins.nix {  };
 
 in {
   config = {
@@ -79,10 +73,10 @@ in {
       jsonnet
       tanka
       kubernetes
-      kubernetes-helm
+      pins.kubernetes-helm
       kubectx
       helmfile
-      sops_pkgs.sops
+      pins.sops
 
       # go tools for Doom, see https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/go
       gopls
@@ -92,7 +86,7 @@ in {
       goimports
       gotests
       gomodifytags
-      golangci-lint.golangci-lint
+      pins.golangci-lint
 
       # Haskell tooling
       zlib.dev

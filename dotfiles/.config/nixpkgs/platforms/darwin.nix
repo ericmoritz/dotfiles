@@ -8,7 +8,7 @@ in {
     home.packages = with pkgs; [
       personal.jfrog-cli
       terminal-notifier
-      nodejs-14_x
+      nodejs-12_x
       vagrant
       azure-cli
       terraform_0_15
