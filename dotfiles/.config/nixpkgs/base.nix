@@ -138,13 +138,6 @@ in {
 
     programs.zsh = {
       enable = true;
-      initExtra = ''
-        . ~/.nix-profile/etc/profile.d/nix.sh
-
-        # Installed via `brew install gnu-getopt` this is required so the brew's
-        # gnu-getopt overrides the system getopt
-        export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-      '';
       shellAliases = {
         k8s_secrets = "jq '.data | with_entries(.value |= (. | @base64d))'";
       };
