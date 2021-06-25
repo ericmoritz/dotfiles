@@ -9,8 +9,6 @@ in {
       spotify
       discord
       minecraft
-      zulip
-      sidequest
       zoom-us
       steam-run
       steamPackages.steamcmd
@@ -20,7 +18,6 @@ in {
       google-chrome
       signal-desktop
       evince
-      audacity
       firefox
 
       openscad
@@ -31,7 +28,12 @@ in {
       element-desktop
       gimp
       inkscape
-      teams
+
+      # gnome themes
+      arc-theme
+      arc-icon-theme
+
+      gnomeExtensions.syncthing-indicator
     ];
     home.file = {
       ".local/share/applications/org-protocol.desktop".text = ''
@@ -58,6 +60,10 @@ in {
         "x-scheme-handler/unknown" = [ "firefox.desktop" ];
         "x-scheme-handler/msteams" = [ "teams.desktop" ];
       };
+    };
+
+    home.sessionVariables = {
+      NIX_PATH = "$HOME/.nix-defexpr/channels$\{NIX_PATH:+:\}$NIX_PATH";
     };
 
     fonts.fontconfig.enable = true;
