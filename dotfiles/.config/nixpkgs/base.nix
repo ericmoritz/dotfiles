@@ -54,6 +54,8 @@ in {
       vscode
       gitAndTools.hub
       grpcurl
+      bazel_4
+      bazelisk
 
       # Tools needed by doom emacs's modules
       fd

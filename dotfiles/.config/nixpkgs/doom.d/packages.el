@@ -7,3 +7,5 @@
 ;; (package! ormolu)
 (package! dhall-mode :pin "ef4d33debe")
 (package! jsonnet-mode)
+(package! protobuf-mode)
+(package! bazel)

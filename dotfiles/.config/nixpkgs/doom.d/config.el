@@ -106,3 +106,6 @@
     (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2)))
   )
 
+(after! 'yas-minor-mode
+  (add-to-list yas-snippet-dirs "~/src/dotfiles/dotfiles/.config/nixpkgs/doom.d/snippets")
+)
