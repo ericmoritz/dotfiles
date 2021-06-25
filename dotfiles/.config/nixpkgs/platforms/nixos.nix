@@ -19,6 +19,7 @@ in {
       signal-desktop
       evince
       firefox
+      zotero
 
       openscad
 

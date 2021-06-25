@@ -7,3 +7,4 @@
 ;; (package! ormolu)
 (package! dhall-mode :pin "ef4d33debe")
 (package! jsonnet-mode)
+(package! org-roam-server)
