@@ -53,6 +53,7 @@ in {
       proselint
       gitAndTools.hub
       grpcurl
+      ansible
 
       # Tools needed by doom emacs's modules
       fd
