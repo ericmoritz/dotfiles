@@ -10,7 +10,7 @@
 
 - name: Download k3sup
   get_url:
-    checksum: "sha256:f3bd1d361495b4351fb1024482f0ecdd4f6019767bab006f53a122fbaddd7665"
+    checksum: "sha256:8b04eb16c6f6202e6800fb1c6ba1f8294e038472db442ac867a4a508a82c4075"
     dest: "/tmp/get-k3sup.sh"
     mode: "+x"
     url: "https://get.k3sup.dev"

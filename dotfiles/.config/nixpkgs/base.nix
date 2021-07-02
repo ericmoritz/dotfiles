@@ -56,6 +56,7 @@ in {
       bazel_4
       bazelisk
       vscode
+      ansible
 
       # Tools needed by doom emacs's modules
       fd

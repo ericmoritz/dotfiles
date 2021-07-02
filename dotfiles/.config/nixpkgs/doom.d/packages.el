@@ -9,3 +9,4 @@
 (package! jsonnet-mode)
 (package! protobuf-mode)
 (package! bazel)
+(package! org-roam-server)
