@@ -55,6 +55,7 @@ in {
       grpcurl
       bazel_4
       bazelisk
+      vscode
 
       # Tools needed by doom emacs's modules
       fd
