@@ -1,6 +1,8 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+(setq eam/projectile-project-search-path '("~/src"))
+(setq eam/org-inbox "~/org/inbox.org")
 (load-file "~/local.el")
 
 (setq
@@ -134,10 +136,9 @@
   (org-roam-server-mode))
 
 (after! org
-  (setq-default eam/org-inbox "inbox.org")
   (setq org-capture-templates
         '(
-          ("t" "Todo" entry (file+headline eam/org-inbox "Inbox") "* [ ] %?\n%i\n%a" :prepend t :kill-buffer t)
+          ("t" "Todo" entry (file+headline eam/org-inbox "Inbox") "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
           ("n" "Fleeting Notes" entry (file+headline eam/org-inbox "Inbox") "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
         )
   )
