@@ -132,3 +132,13 @@
 
 (after! org-roam
   (org-roam-server-mode))
+
+(after! org
+  (setq-default eam/org-inbox "inbox.org")
+  (setq org-capture-templates
+        '(
+          ("t" "Todo" entry (file+headline eam/org-inbox "Inbox") "* [ ] %?\n%i\n%a" :prepend t :kill-buffer t)
+          ("n" "Fleeting Notes" entry (file+headline eam/org-inbox "Inbox") "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
+        )
+  )
+)
